@@ -1,0 +1,13 @@
+# Ocultar chaves de API e configurações locais do Streamlit
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# Ocultar arquivos de dados pesados (TSE/IBGE) para não travar o GitHub
+dados/*.parquet
+dados/*.csv
+dados/*.xlsx
+
+# Arquivos temporários do Python
+__pycache__/
+*.pyc
+.env
