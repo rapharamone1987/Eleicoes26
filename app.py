@@ -116,7 +116,8 @@ if ativar_motor:
                 "Gere uma análise SWOT eleitoral preliminar sucinta em tópicos com base no meu perfil de candidato."
             )
             st.session_state['analise_inicial'] = response.text
-            st.toast("Célula tática activated com sucesso!", icon="✓")
+            st.toast("Célula tática ativa com sucesso!", icon="✅")
+
         except Exception as e:
             st.error(f"Erro na API do Groq: {e}")
 
