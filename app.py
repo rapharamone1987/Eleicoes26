@@ -85,7 +85,7 @@ tab_diagnostico, tab_conversao, tab_criativo = st.tabs([
 ])
 
 # PROCESSAMENTO DO DISPARO
-if activar_motor:
+if ativar_motor:
     dados_candidato = {"nome": nome, "idade": idade, "partido": partido, "nicho": nicho, "municipios": municipios_alvo}
     st.session_state['dados_candidato'] = dados_candidato
     st.session_state['motor_ia'] = inicializar_motor_campanha(api_key, dados_candidato)
