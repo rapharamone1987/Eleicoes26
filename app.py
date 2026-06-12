@@ -1,5 +1,5 @@
 import streamlit as st
-from core.motor_gemini import configurar_inteligencia
+from core.motor_groq import configurar_inteligencia
 
 st.set_page_config(page_title="Aegis Eleitoral", layout="wide")
 
@@ -25,7 +25,7 @@ with st.sidebar.form("contexto_campanha"):
         "Metropolitana", "Serra", "Planalto", "Norte", "Fronteira Oeste", "Zona Sul"
     ])
     
-    api_key = st.text_input("Chave de API do Google Gemini", type="password")
+    api_key = st.text_input("Chave de API do Groq", type="password")
     
     ativar_motor = st.form_submit_button("Inicializar Célula Estratégica")
 
@@ -37,9 +37,9 @@ tab_diagnostico, tab_geopolitica, tab_criativo = st.tabs([
 ])
 
 # Lógica de ativação após o clique no botão do formulário
-if activar_motor:
+if ativar_motor:
     if not api_key:
-        st.error("Por favor, insira a sua Chave de API do Google Gemini para ativar o sistema.")
+        st.error("Por favor, insira a sua Chave de API do Groq para ativar o sistema.")
     else:
         dados_candidato = {"nome": nome, "idade": idade, "partido": partido, "nicho": nicho, "regioes": regioes}
         
@@ -58,4 +58,3 @@ if activar_motor:
                     "Gere uma análise Swot eleitoral preliminar com base no meu perfil de candidato."
                 )
                 st.markdown(response.text)
-              
