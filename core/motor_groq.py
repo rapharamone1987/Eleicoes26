@@ -1,80 +1,56 @@
+import os
 from groq import Groq
 
-
-def configurar_inteligencia(api_key: str, dados_candidato: dict):
+def configurar_inteligencia(api_key, dados_candidato):
     """
-    Configura o cliente Groq com os dados do candidato.
-    
-    Args:
-        api_key: Chave de API do Groq
-        dados_candidato: Dicionário com dados do candidato (nome, idade, partido, nicho, regioes)
-    
-    Returns:
-        Cliente Groq configurado
+    Inicializa o cliente do Groq e encapsula a engenharia de prompt
+    de sistema com base no onboarding dinâmico e livre do candidato.
     """
     client = Groq(api_key=api_key)
     
-    # Armazena dados do candidato no cliente para contexto
-    client.dados_candidato = dados_candidato
-    client.context_sistema = _gerar_contexto_sistema(dados_candidato)
+    nome = dados_candidato.get('nome', 'Candidato')
+    partido = dados_candidato.get('partido', 'Partido')
+    idade = dados_candidato.get('idade', '40')
+    nicho_livre = dados_candidato.get('nicho', 'Geral')
     
-    return client
+    lista_municipios = dados_candidato.get('municipios', [])
+    municipios_texto = ", ".join(lista_municipios) if lista_municipios else "Todo o Rio Grande do Sul"
 
-
-def _gerar_contexto_sistema(dados_candidato: dict) -> str:
-    """
-    Gera o prompt de contexto do sistema baseado no perfil do candidato.
-    """
-    return f"""Você é um especialista em estratégia eleitoral e marketing político de alta performance.
+    prompt_sistema = f"""
+    Você é o Estrategista-Chefe e Consultor de Marketing Político Sênior (nível PhD) da campanha de {nome} ({partido}).
+    Cargo Pleiteado: Deputado Federal pelo Rio Grande do Sul (Eleições 2026).
+    Perfil Demográfico: {idade} anos.
     
-Você está trabalhando com o candidato: {dados_candidato['nome']}
-- Idade: {dados_candidato['idade']} anos
-- Partido/Federação: {dados_candidato['partido']}
-- Nicho/Pauta Central: {dados_candidato['nicho']}
-- Regiões Prioritárias: {', '.join(dados_candidato['regioes'])}
-
-Sua missão é gerar análises estratégicas, mapas de votação, e conteúdos criativos alinhados com este perfil.
-Mantenha o tom profissional, dados-driven, e focado em resultados eleitorais."""
-
-
-class MotorGroq:
-    """
-    Wrapper para facilitar a integração com Streamlit.
-    """
-    def __init__(self, client: Groq, sistema_context: str):
-        self.client = client
-        self.sistema_context = sistema_context
+    [MATRIZ GEOPOLÍTICA E NARRATIVA]
+    - Território de Operação (Cidades-Foco no RS): {municipios_texto}
+    - Nicho Ideológico / Pauta Central de Ataque: {nicho_livre}
     
-    def generate_content(self, prompt: str, model: str = "mixtral-8x7b-32768") -> dict:
-        """
-        Gera conteúdo usando o Groq.
-        
-        Args:
-            prompt: Prompt do usuário
-            model: Modelo do Groq a utilizar
-        
-        Returns:
-            Resposta com atributo .text para compatibilidade com Gemini
-        """
-        response = self.client.chat.completions.create(
-            model=model,
-            messages=[
-                {
-                    "role": "system",
-                    "content": self.sistema_context
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            temperature=0.7,
-            max_tokens=2048
-        )
-        
-        # Wrapper para compatibilidade com interface do Gemini
-        class ResponseWrapper:
-            def __init__(self, content):
-                self.text = content
-        
-        return ResponseWrapper(response.choices[0].message.content)
+    [DIRETRIZES DO COMITÊ CENTRAL - OBRIGATÓRIO]
+    1. TOM E POSTURA: Responda com pragmatismo, altivez e profundidade técnica. O eleitor gaúcho é altamente politizado. Evite clichês e discursos populistas genéricos. Ajuste o vocabulário para a realidade socioeconômica de {municipios_texto}.
+    2. MICROSEGMENTAÇÃO: Sempre que gerar estratégias ou conteúdos, amarre a pauta de "{nicho_livre}" diretamente às características locais de {municipios_texto} (ex: infraestrutura, cooperativismo, segurança ou comércio local dessas áreas).
+    3. TRAVA JURÍDICA DE COMPLIANCE (TSE): Você está terminantemente proibido de sugerir pedidos explícitos de voto (como "vote em mim", "conto com seu voto") para evitar processos por propaganda antecipada ou irregular. Use termos de posicionamento e construção de imagem ("Defendo que", "Nosso compromisso é", "Precisamos debater").
+    4. ÉTICA DE CAMPANHA: Não invente fake news ou dados demográficos falsos. Se precisar citar cenários, baseie-se em dados lógicos e plausíveis de administração pública.
+    """
+
+    class GroqCampaignEngine:
+        def __init__(self, groq_client, system_prompt):
+            self.client = groq_client
+            self.system_prompt = system_prompt
+            self.model_name = "llama-3.1-70b-versatile" 
+
+        def generate_content(self, prompt_usuario):
+            completion = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {"role": "system", "content": self.system_prompt},
+                    {"role": "user", "content": prompt_usuario}
+                ],
+                temperature=0.3,
+                max_tokens=2048
+            )
+            class ResponseObj:
+                def __init__(self, text):
+                    self.text = text
+            return ResponseObj(completion.choices[0].message.content)
+
+    return GroqCampaignEngine(client, prompt_sistema)
