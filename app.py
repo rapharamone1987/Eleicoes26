@@ -8,9 +8,9 @@ st.caption("Conexão direta entre geopolítica de dados e marketing político de
 
 # --- OBTER CHAVE DA API DOS SECRETS ---
 try:
-    api_key = st.secrets["groq_api_key"]
+    api_key = st.secrets["GROQ_API_KEY"]
 except KeyError:
-    st.error("⚠️ Chave de API do Groq não encontrada nos secrets. Configure em `.streamlit/secrets.toml`")
+    st.error("⚠️ Chave de API do Groq (GROQ_API_KEY) não encontrada nos secrets. Configure em Settings → Secrets")
     st.stop()
 
 # --- SIDEBAR: ONBOARDING DO CANDIDATO ---
