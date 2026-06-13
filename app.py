@@ -5,14 +5,14 @@ import pandas as pd
 from groq import Groq
 
 # ------------------------------------------------------------------------------
-# 1. CONFIGURAÇÃO DA INTERFACE E AMBIENTE
+# 1. CONFIGURAÇÃO DA INTERFACE E AMBIENTE (TELA LIMPA COMERCIAL)
 # ------------------------------------------------------------------------------
 st.set_page_config(page_title="Aegis Eleitoral PRO", layout="wide")
 
 st.title("🛡️ Aegis Eleitoral — Inteligência de Guerrilha")
 st.caption("Plataforma Avançada de Sala de Situação, Big Data Geopolítico e Controle Financeiro — Eleições 2026")
 
-# --- VALIDAÇÃO DOS SECRETS ---
+# --- VALIDAÇÃO DA CHAVE DE API NOS SECRETS ---
 try:
     api_key = st.secrets["GROQ_API_KEY"]
 except KeyError:
@@ -20,7 +20,7 @@ except KeyError:
     st.stop()
 
 # ------------------------------------------------------------------------------
-# 2. BANCO DE DADOS ESTATÍSTICOS ANCORA (MUNICÍPIOS REFERÊNCIA)
+# 2. BANCO DE DADOS ESTATÍSTICOS ÂNCORA (MUNICÍPIOS REFERÊNCIA DO RS)
 # ------------------------------------------------------------------------------
 DADOS_GEOPOLITICOS_RS = {
     "PORTO ALEGRE": {
@@ -44,7 +44,7 @@ DADOS_GEOPOLITICOS_RS = {
         "eleitorado_total": 152000,
         "abstencao_media": "16.5%",
         "perfil_socioeconomico": "Polo de saúde, educação superior e entroncamento logístico do agronegócio de alta precisão. Renda impulsionada pelas safras de grãos.",
-        "comportamento_historico": "Voto tradicionalmente ligado a grandes lideranças locais (voto de liderança e representação regional). Forte influência do setor produtivo e sindicatos rurais.",
+        "comportamento_historico": "Voto tradicionalmente ligado a grandes lideranças locais (voto de liderança e representation regional). Forte influência do setor produtivo e sindicatos rurais.",
         "principais_dores": "Insegurança e roubo de defensivos em propriedades rurais, infraestrutura de rodovias estaduais secundárias e retenção de talentos técnicos."
     },
     "URUGUAIANA": {
@@ -67,9 +67,13 @@ DADOS_ESTADUAIS_GERAIS = {
 }
 
 # ------------------------------------------------------------------------------
-# 3. MOTOR DE INTELIGÊNCIA ARTIFICIAL MILITARIZADO (PHD CORE)
+# 3. CÉREBRO DA IA RECALIBRADO (TERMO UNIFICADO: ACTIVAR / ATIVAR)
 # ------------------------------------------------------------------------------
-def inicializar_motor_campanha(api_key, dados_candidato):
+def ativar_motor_campanha(api_key, dados_candidato):
+    """
+    Função mãe rebatizada para manter a simetria absoluta do sistema.
+    Injeta a biografia profunda e fixa o Llama 3.3 em temperatura lógica (0.1).
+    """
     client = Groq(api_key=api_key)
     
     nome = dados_candidato.get('nome', 'Candidato')
@@ -83,16 +87,16 @@ def inicializar_motor_campanha(api_key, dados_candidato):
     Você é o Estrategista-Chefe, General de Sala de Crise e PhD em Ciência Política da campanha de {nome} ({partido}), disputando a eleição de Deputado Federal pelo Rio Grande do Sul.
     Idade: {idade} anos.
     
-    [PRONTUÁRIO BIOGRÁFICO REAL DO CANDIDATO]
+    [PRONTUÁRIO BIOGRÁFICO REAL DO CANDIDATO - ESSENCIAL PARA CALIBRAGEM]
     {biografia}
     
-    [MAPA GEOPOLÍTICO E PAUTA]
+    [MAPA GEOPOLÍTICO E TRINCHEIRA NARRATIVA]
     - Territórios-Alvo selecionados: {municipios_texto}
-    - Trincheira Temática Central: {nicho_livre}
+    - Pauta Central de Ataque: {nicho_livre}
     
     [DIRETRIZES DO COMITÊ CENTRAL - IMPRESCINDÍVEL]
-    1. POSTURA TÁTICA: Suas recomendações devem ser arrojadas, disruptivas e baseadas em estratégias reais de guerra política de desgaste. Esqueça cartilhas corporativas ou conselhos confortáveis.
-    2. ANÁLISE JURÍDICO-POLÍTICA: O eleitor gaúcho exige profundidade. Confronte a biografia do candidato com as dores socioeconômicas fornecidas, indicando como roubar votos de dinastias políticas tradicionais locais.
+    1. POSTURA TÁTICA: Suas recomendações devem ser arrojadas, disruptivas e baseadas em estratégias reais de guerra política de desgaste. Esqueça cartilhas corporativas confortáveis.
+    2. ANÁLISE JURÍDICO-POLÍTICA: O eleitor gaúcho exige profundidade. Confronte a biografia do candidato com as dores socioeconômicas fornecidas, indicando como quebrar dinastias locais.
     3. TRAVA JURÍDICA TSE: Desenhe discursos e conteúdos de altíssimo impacto institucional ("Nosso dever é confrontar", "Exijo tolerância zero com"), mas NUNCA use palavras de pedido explícito de voto ("vote", "eleja", "apoie nas urnas").
     """
 
@@ -104,7 +108,7 @@ def inicializar_motor_campanha(api_key, dados_candidato):
                     {"role": "system", "content": prompt_sistema},
                     {"role": "user", "content": prompt_usuario}
                 ],
-                temperature=0.1,  # Máxima precisão analítica e lógica
+                temperature=0.1,  # Foco total em lógica fria e exatidão militar
                 max_tokens=2500
             )
             class Wrapper:
@@ -114,7 +118,7 @@ def inicializar_motor_campanha(api_key, dados_candidato):
     return EngineGuerrilha()
 
 # ------------------------------------------------------------------------------
-# 4. ONBOARDING TOTALMENTE NEUTRO (SEM PRÉ-PREENCHIMENTO COMERCIAL)
+# 4. PAINEL DE CONTROLE LATERAL (ONBOARDING COMERCIAL TOTALMENTE NEUTRO)
 # ------------------------------------------------------------------------------
 st.sidebar.title("👤 Inteligência de Origem")
 st.sidebar.markdown("*Insira os dados reais do candidato para inicializar os algoritmos de guerrilha.*")
@@ -123,27 +127,28 @@ with st.sidebar.form("contexto_campanha"):
     nome_input = st.text_input("Nome de Urna", placeholder="Ex: Capitão Veríssimo")
     idade_input = st.number_input("Idade", min_value=18, max_value=90, value=35)
     partido_input = st.text_input("Partido / Federação", placeholder="Ex: NOVO / PP / MDB")
-    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Defesa do Livre Mercado / Segurança Pública")
+    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Segurança Pública / Defesa do Agro")
     
     biografia_input = st.text_area(
         "Biografia e Capital Político do Candidato", 
         placeholder="Ex: Empresário local, sem histórico em cargos eletivos anteriores, muito forte entre lideranças comerciais da região litorânea, mas sem recall em Porto Alegre..."
     )
     
-    # Lista de opções expandida para demonstrar dinamismo regional comercial
+    # Lista de opções expandida para demonstrar dinamismo regional sob demanda
     OPCOES_REGIOES = list(DADOS_GEOPOLITICOS_RS.keys()) + ["LITORAL NORTE", "ZONA DA CAMPANHA", "SERRA CENTRAL", "VALE DO TAQUARI"]
     municipios_alvo = st.multiselect(
         "Cidades/Regiões Foco de Atuação", 
         options=OPCOES_REGIOES,
-        default=[] # Tela totalmente limpa por padrão
+        default=[] # Totalmente limpo para não gerar viés na apresentação
     )
     
+    # DECLARAÇÃO ÚNICA DA VARIÁVEL DE GATILHO
     ativar_motor = st.form_submit_button("🔥 Disparar Célula de Inteligência")
 
 # ------------------------------------------------------------------------------
-# 5. MEMÓRIA DE SESSÃO E SALVAMENTO DE ESTADO
+# 5. MEMÓRIA DE SESSÃO E PROCESSAMENTO DA IA (SIMETRIA ABSOLUTA)
 # ------------------------------------------------------------------------------
-if activar_motor:
+if ativar_motor:
     if not nome_input or not partido_input or not nicho_input or not biografia_input or not municipios_alvo:
         st.sidebar.error("⚠️ Operação Interrompida: Preencha TODOS os campos da barra lateral para forjar a identidade estratégica.")
     else:
@@ -156,7 +161,9 @@ if activar_motor:
             "municipios": municipios_alvo
         }
         st.session_state['dados_candidato'] = dados_candidato
-        st.session_state['motor_ia'] = inicializar_motor_campanha(api_key, dados_candidato)
+        
+        # CHAMADA CORRIGIDA: Usa a função mãe rebatizada de forma idêntica
+        st.session_state['motor_ia'] = ativar_motor_campanha(api_key, dados_candidato)
         
         with st.spinner("Mapeando vulnerabilidades do território e quebrando defesas adversárias..."):
             try:
@@ -179,7 +186,7 @@ tab_diagnostico, tab_bigdata, tab_conversao, tab_financeiro, tab_criativo = st.t
     "📝 Fábrica de Conteúdo de Guerrilha"
 ])
 
-# RENDERING CONTROLADO SEGURO
+# RENDERING VISUAL CONTROLADO E PERSISTENTE
 if 'motor_ia' in st.session_state:
     dados_usuario = st.session_state['dados_candidato']
     
@@ -190,17 +197,16 @@ if 'motor_ia' in st.session_state:
             st.markdown(st.session_state['analise_inicial'])
             st.text_area("Copiar Relatório SWOT:", value=st.session_state['analise_inicial'], height=120)
 
-    # --- ABA 2: BIG DATA GEOPOLÍTICO HÍBRIDO (RESOLUÇÃO DO PONTO CEGO) ---
+    # --- ABA 2: BIG DATA GEOPOLÍTICO HÍBRIDO Sob demanda ---
     with tab_bigdata:
         st.header("📊 Inteligência de Dados Demográficos e Eleitorais")
-        st.markdown("Auditoria estatística ancorada em indicadores reais ou gerada por inferência perita sob demanda.")
+        st.markdown("Auditoria estatística ancorada em indicadores de referência ou gerada por inferência perita em tempo real.")
         
         opcao_visualizacao = st.selectbox(
             "Selecione o recorte estatístico para auditoria:",
             options=["Consolidado Estadual (Geral)"] + dados_usuario['municipios']
         )
         
-        # Lógica híbrida: verifica se a praça está mapeada ou se exige varredura do motor
         if opcao_visualizacao in DADOS_GEOPOLITICOS_RS:
             bd = DADOS_GEOPOLITICOS_RS[opcao_visualizacao]
             modo_ia_puro = False
@@ -222,27 +228,26 @@ if 'motor_ia' in st.session_state:
             with col_info2:
                 st.warning(f"**Comportamento de Urna e Histórico:**\n\n{bd['comportamento_historico']}")
         else:
-            st.warning(f"🌐 Região '{opcao_visualizacao}' detectada fora do núcleo fixo. Ativando Varredura Neural de Big Data...")
-            st.markdown("*O motor vai buscar em seu ecossistema de dados o perfil demográfico, as dores macroeconômicas e estimativas históricas para esta praça.*")
+            st.warning(f"🌐 Região '{opcao_visualizacao}' fora do núcleo fixo. Ativando Varredura Neural de Big Data...")
+            st.markdown("*O motor vai vasculhar seu ecossistema de conhecimento para reconstruir o perfil macroeconômico e estimar o eleitorado e as abstenções desta praça.*")
 
         st.markdown("---")
         
-        # Botão de geração profunda de cenários de voz e tom adaptativo
         if st.button(f"🧠 Forjar Cenários de Discurso e Tom para {opcao_visualizacao}"):
             with st.spinner("Calculando ressonância psicológica do eleitorado local..."):
                 if not modo_ia_puro:
                     contexto_prompt = f"Perfil Socioeconômico: {bd['perfil_socioeconomico']}. Histórico de Urna: {bd['comportamento_historico']}. Dores: {bd['principais_dores']}."
                 else:
-                    contexto_prompt = f"Gere os dados demográficos, estimativas de eleitorado, abstenção e matriz socioeconômica crua para a região de {opcao_visualizacao} no Rio Grande do Sul."
+                    contexto_prompt = f"Gere os dados demográficos, estimativas de eleitorado, abstenção média histórica e matriz socioeconômica crua para a região de {opcao_visualizacao} no Rio Grande do Sul."
                 
                 prompt_bd = f"""
                 Analise o seguinte cenário territorial para a praça [{opcao_visualizacao}]:
                 Contexto Regional: {contexto_prompt}
                 
-                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um relatório tático de nível PhD apresentando de forma aprofundada, crua e arrojada:
+                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um relatório tático de nível PhD apresentando:
                 1. DADOS SOCIOECONÔMICOS E GEOPOLÍTICOS: Se a região for nova, estabeleça os parâmetros estimados.
-                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA (Cenário A: Invasão/Ruptura Agressiva, Cenário B: Contraponto Técnico, Cenário C: Conexão Popular/Demanda de Base). Diga exatamente a frase de impacto que inicia cada tom e qual deles possui maior viabilidade matemática de quebrar as dinastias locais.
-                3. ZONA DE REJEIÇÃO: O que o candidato está terminantemente proibido de falar para não ser esmagado pelo histórico cultural dessa região.
+                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA (Cenário A: Invasão/Ruptura Agressiva, Cenário B: Contraponto Técnico, Cenário C: Conexão Popular). Diga exatamente a frase de impacto que inicia cada tom e qual deles possui maior viabilidade de quebrar as dinastias locais.
+                3. ZONA DE REJEIÇÃO: O que o candidato está proibido de falar para não ser engolido pelo histórico cultural dessa região.
                 """
                 try:
                     relatorio_bd = st.session_state['motor_ia'].generate_content(prompt_bd)
@@ -284,8 +289,8 @@ if 'motor_ia' in st.session_state:
                 Meta de Votos de Redes (Aéreo): {votos_opiniao_insta} votos.
                 
                 Com base na BIOGRAFIA e HISTÓRICO do candidato, entregue uma estratégia de guerra arrojada:
-                1. ARMA DE COBRANÇA: Como o candidato constrange, audita e amarra essas {num_liderancas} lideranças para garantir que entreguem os {media_votos_lider} votos prometidos sem traição ou desvio para concorrentes tradicionais.
-                2. ASSALTO NARRATIVO: Qual ação tática de impacto de guerrilha terrestre (infiltração em feiras, sindicatos ou eventos) o candidato deve fazer nesta praça para roubar o eleitorado consolidado das raposas políticas tradicionais.
+                1. ARMA DE COBRANÇA: Como o candidato constrange, audita e amarra essas {num_liderancas} lideranças para garantir que entreguem os {media_votos_lider} votos prometidos sem traição ou desvio.
+                2. ASSALTO NARRATIVO: Qual ação tática de impacto de guerrilha terrestre o candidato deve fazer nesta praça para roubar o eleitorado consolidado das raposas políticas tradicionais.
                 """
                 try:
                     relatorio_cidade = st.session_state['motor_ia'].generate_content(prompt_analise)
@@ -301,7 +306,7 @@ if 'motor_ia' in st.session_state:
     # --- ABA 4: ALOCAÇÃO E CONTROLE FINANCEIRO ---
     with tab_financeiro:
         st.header("💰 Planejamento Financeiro de Mobilização e Pessoal")
-        st.markdown("Controle de alocação de trabalhadores de campanha e auditoria de teto de gastos por região de conflito.")
+        st.markdown("Controle de alocação de trabalhadores de campanha e distribuição de recursos por região ativa.")
         
         lista_dados_financeiros = []
         for cidade in dados_usuario['municipios']:
@@ -372,12 +377,12 @@ if 'motor_ia' in st.session_state:
                     Notícia/Fato do dia a explorar: "{pauta_dia}".
                     
                     ESTRUTURA OBRIGATÓRIA DA RESPOSTA:
-                    1. HOOK / GANCHO (Primeiros 3 segundos para travar o feed do eleitor gaúcho).
-                    2. ARGUMENTO DE GUERRA (Exponha o escândalo/fato, use a biografia do candidato para trazer autoridade e esmague a omissão dos rivais tradicionais).
+                    1. HOOK / GANCHO (Primeiros 3 segundos para travar o feed do eleitor).
+                    2. ARGUMENTO DE GUERRA (Exponha o fato, use a biografia do candidato para trazer autoridade e desmonte a omissão dos rivais tradicionais).
                     3. CHAMADA INSTITUCIONAL (Engajamento e convocação de debate, com total compliance anti-TSE, sem pedir votos).
                     """
                     try:
-                        peca_final = st.session_state['motor_ia'].generate_content(prompt_creativo)
+                        peca_final = st.session_state['motor_ia'].generate_content(prompt_criativo)
                         st.session_state['peca_comunicacao_atual'] = peca_final.text
                     except Exception as e:
                         st.error(f"Erro na fábrica de criativos: {e}")
