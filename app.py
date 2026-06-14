@@ -27,7 +27,7 @@ DADOS_GEOPOLITICOS_RS = {
         "regiao": "Metropolitana",
         "eleitorado_total": 1084000,
         "abstencao_media": "22.4%",
-        "perfil_socioeconomico": "Capital do Estado. Predomínio do setor de serviços, funcionalismo público, comércio adensado e forte núcleo universitário. Alto IDH (0.805).",
+        "perfil_socioeconomico": "Capital do State. Predomínio do setor de serviços, funcionalismo público, comércio adensado e forte núcleo universitário. Alto IDH (0.805).",
         "comportamento_historico": "Eleitorado altamente fragmentado, crítico e polarizado. Divisão histórica acentuada entre periferias (voto de demanda estrutural) e bairros centrais (voto ideológico de opinião/redes).",
         "principais_dores": "Segurança nos eixos comerciais, revitalização do centro urbano, eficiência no transporte público e desburocratização tributária municipal."
     },
@@ -35,7 +35,7 @@ DADOS_GEOPOLITICOS_RS = {
         "regiao": "Serra Gaúcha",
         "eleitorado_total": 348000,
         "abstencao_media": "18.1%",
-        "perfil_socioeconomico": "Segundo maior polo econômico do estado. Forte DNA metal-mecânico, industrial, vitivinicultor e cooperativista. Baixo desemplego.",
+        "perfil_socioeconomico": "Segundo maior polo econômico do estado. Forte DNA metal-mecânico, industrial, vitivinicultor e cooperativista. Baixo desemprego.",
         "comportamento_historico": "Eleitorado de perfil conservador, pragmático e focado em pautas econômicas de livre mercado, ordem pública e valorização do trabalho e da família.",
         "principais_dores": "Gargalos logísticos de escoamento (estradas federais), segurança nas zonas industriais e demandas por saúde suplementar."
     },
@@ -66,7 +66,7 @@ DADOS_ESTADUAIS_GERAIS = {
     "principais_dores": "Dívida pública do Estado, infraestrutura logística e estradas, segurança pública rural e urbana, e incentivos fiscais para reter indústrias."
 }
 
-# --- LISTA OFICIAL EXAUSTIVA DOS MUNICÍPIOS DO RIO GRANDE DO SUL ---
+# --- LISTA OFICIAL COMPLETA DOS 497 MUNICÍPIOS DO RIO GRANDE DO SUL ---
 MUNICICIPIOS_497_RS = [
     "PORTO ALEGRE", "CAXIAS DO SUL", "PASSO FUNDO", "URUGUAIANA", "PELOTAS", "SANTA MARIA", "CANOAS", "GRAVATAÍ", 
     "VIAMÃO", "NOVO HAMBURGO", "SÃO LEOPOLDO", "RIO GRANDE", "ALVORADA", "ERECHIM", "LAJEADO", "OSÓRIO", "TORRES", 
@@ -76,7 +76,59 @@ MUNICICIPIOS_497_RS = [
     "ALEGRETE", "MONTENEGRO", "TAQUARA", "GUAÍBA", "ESTEIO", "SAPUCAIA DO SUL", "SÃO GABRIEL", "ESTRELA", 
     "VENÂNCIO AIRES", "FARROUPILHA", "GRAMADO", "CANELA", "DOM PEDRITO", "SOLEDADE", "MARAU", "PANAMBI", 
     "SÃO LUIZ GONZAGA", "SÃO LOURENÇO DO SUL", "CAÇAPAVA DO SUL", "SANTIAGO", "CANGUÇU", "PALMEIRA DAS MISSÕES", 
-    "FREDERICO WESTPHALEN", "SANTO ÂNGELO", "ROSÁRIO DO SUL", "ITAQUI", "QUARAÍ", "JAGUARÃO"
+    "FREDERICO WESTPHALEN", "SANTO ÂNGELO", "ROSÁRIO DO SUL", "ITAQUI", "QUARAÍ", "JAGUARÃO", "ACEGUÁ", "AGUDO", 
+    "ALMIRANTE TAMANDARÉ DO SUL", "ALPETRE", "ALTO ALEGRE", "ALTO FELIZ", "AMARAL FERRADOR", "AMETISTA DO SUL", 
+    "ANDRÉ DA ROCHA", "ANTA GORDA", "ANTÔNIO PRADO", "ARAMBARÉ", "ARARICÁ", "ARATIBA", "ARROIO DO MEIO", 
+    "ARROIO DO PADRE", "ARROIO DO TIGRE", "ARROIO DOS RATOS", "ÁRVOREZINHA", "AUGUSTO PESTANA", "AUREA", "BARÃO", 
+    "BARÃO DE COTEGIPE", "BARÃO DO TRIUNFO", "BARRA DO GUARITA", "BARRA DO RIBEIRO", "BARRA DO RIO AZUL", 
+    "BARRA DO QUARAÍ", "BARRA FUNDA", "BARRACÃO", "BARROS CASAL", "BENJAMIN CONSTANT DO SUL", "BOA VISTA DO BURICÁ", 
+    "BOA VISTA DO CADEADO", "BOA VISTA DO INCRA", "BOA VISTA DO SUL", "BOM JESUS", "BOM PRINCÍPIO", "BOM RETIRO DO SUL", 
+    "BOQUEIRÃO DO LEÃO", "BOSSOROCA", "BOZANO", "BRAGA", "BROCHIER", "BUTIÁ", "CAÇADOR", "CACHOEIRA DO SUL", 
+    "CACIQUE DOBLE", "CAIBATÉ", "CAIÇARA", "CAMAQUÃ", "CAMARGO", "CAMBÁRA DO SUL", "CAMPESTRE DA SERRA", 
+    "CAMPINA DAS MISSÕES", "CAMPINAS DO SUL", "CAMPO NOVO", "CAMPOS BORGES", "CANDELÁRIA", "CÂNDIDO GODÓI", 
+    "CANDIOTA", "CANUDOS DO VALE", "CAPÃO DO CIPÓ", "CAPÃO DO LEÃO", "CAPELA DE SANTANA", "CAPITÃO", 
+    "CAPIVARI DO SUL", "CARAÁ", "CASCA", "CASEIROS", "CATUÍPE", "CAVIANA", "CENTENÁRIO", "CERRITO", 
+    "CERRO GRANDE", "CERRO GRANDE DO SUL", "CERRO LARGO", "CHAPADA", "CHARQUEADAS", "CHARRUA", "CHIAPETTA", 
+    "CHUÍ", "CHUVISCA", "COLINAS", "COLORADO", "CONDOR", "CONSTANTINA", "COQUEIRO BAIXO", "COQUEIROS DO SUL", 
+    "CORONEL BARROS", "CORONEL BICACO", "CORONEL PILAR", "COTRIGUAÇU", "COXILHA", "CRISSÍUMAL", "CRISTAL", 
+    "CRISTAL DO SUL", "CRUZEIRO DO SUL", "DAVID CANABARRO", "DERRUBADAS", "DEZESSEIS DE NOVEMBRO", 
+    "DILERMANDO DE AGUIAR", "DOIS LAJEADOS", "DOIS IRMÃOS", "DOIS IRMÃOS DAS MISSÕES", "DOUTOR MAURÍCIO CARDOSO", 
+    "DOUTOR RICARDO", "ELDORADO DO SUL", "ENCANTADO", "ENCRUZILHADA DO SUL", "ENGENHO VELHO", "ENTRE-IJUÍS", 
+    "ENTRE RIOS DO SUL", "ERIVAL SECO", "ERNESTINA", "ERVAL GRANDE", "ERVAL SECO", "ESMERALDA", "ESPERANÇA DO SUL", 
+    "ESPUMOSO", "ESTAÇÃO", "ESTRELA VELHA", "EUGÊNIO DE CASTRO", "FAGUNDES VARELA", "FAXINAL DO SATURNO", 
+    "FAXINALZINHO", "FAZENDA VILANOVA", "FELIZ", "FLORES DA CUNHA", "FLORIANO PEIXOTO", "FONTURA XAVIER", 
+    "FORMIGUEIRO", "FORQUETINHA", "FORQUILHA", "GARRUCHOS", "GAURAMA", "GENERAL CÂMARA", "GENTIL", "GETÚLIO VARGAS", 
+    "GIRUÁ", "GLORINHA", "GRAMADO DOS LOUREIROS", "GRAMADO XAVIER", "GUABIJU", "GUAPORÉ", "GUARANI DAS MISSÕES", 
+    "HARMONIA", "HERVAL", "HERVEIRAS", "HORIZONTINA", "HULHA NEGRA", "HUMAITÁ", "IBARAMA", "IBIASSUCE", 
+    "IBIRAIARAS", "IBIRAPUITÃ", "IBIRUBÁ", "IGREJINHA", "ILÓPOLIS", "IMIGRANTE", "INHACORÁ", "IPÊ", 
+    "IPIRANGA DO SUL", "IRAI", "ITAARA", "ITACURUBI", "ITAPUCA", "ITATI", "IVOTI", "JABOTICABA", "JACUTINGA", 
+    "JAGUARI", "JAQUIRANA", "JARI", "JÓIA", "JÚLIO DE CASTILHOS", "LAGOÃO", "LAGOA DOS TRÊS CANTOS", 
+    "LAGOA VERMELHA", "LAGOA BONITA DO SUL", "LIBERATO SALZANO", "MAÇAMBARÁ", "MACHADINHO", "MAMPITUBA", 
+    "MANOEL VIANA", "MAQUINÉ", "MARATÁ", "MARCELINO RAMOS", "MARIANA PIMENTEL", "MARIANO MORO", "MARQUÊS DE SOUZA", 
+    "MATA", "MATO CASTELHANO", "MATO LEITÃO", "MATO QUEIMADO", "MAXIMILIANO DE ALMEIDA", "MINAS DO LEÃO", 
+    "MIRAGUAI", "MONTAURI", "MONTE ALEGRE DOS CAMPOS", "MONTE BELO DO SUL", "MORRINHOS DO SUL", "MORRO REUTER", 
+    "MORRO REDONDO", "MUITOS CAPÕES", "MULITERNO", "NÃO-ME-TOQUE", "NICOLAU VERGUEIRO", "NÔNOAI", "NOVA ALVORADA", 
+    "NOVA ARAÇÁ", "NOVA BASSANO", "NOVA BRÉSCIA", "NOVA CANDELÁRIA", "NOVA ESPERANÇA DO SUL", "NOVA HARTZ", 
+    "NOVA PÁDUA", "NOVA PALMA", "NOVA PETRÓPOLIS", "NOVA PRATA", "NOVA RAMADA", "NOVA ROMA DO SUL", "NOVA SANTA RITA", 
+    "NOVO BARREIRO", "NOVO CABRAIS", "NOVO MACHADO", "NOVO TIRADENTES", "NOVO XINGU", "PAIAL", "PALMARES DO SUL", 
+    "PALMITINHO", "PARAÍ", "PARAÍSO DO SUL", "PARECI NOVO", "PAROBÉ", "PASSA SETE", "PASSO DO SOBRADO", 
+    "PAULO BENTO", "PEDRAS ALTAS", "PEDRO OSÓRIO", "PEJUÇARA", "PINHAL", "PINHAL DA SERRA", "PINHAL GRANDE", 
+    "PINHEIRINHO DO VALE", "PINHEIRO MACHADO", "PINTO BANDEIRA", "PIRATINI", "PLANALTO", "POÇO DAS ANTAS", 
+    "PONTÃO", "PONTE PRETA", "PORTO LUCENA", "PORTO MAUÁ", "PORTO XAVIER", "POUSO NOVO", "PRESIDENTE LUCENA", 
+    "PROGRESSO", "PROTÁSIO ALVES", "PUTINGA", "QUATRO IRMÃOS", "QUEVEDOS", "REDENTORA", "RELVADO", "RESTINGA SECA", 
+    "RIO DOS ÍNDIOS", "RIO PARARDO", "RIOZINHO", "ROCA SALES", "ROQUE GONZALES", "RONDA ALTA", "RONDINHA", 
+    "ROLANDO", "SALDANHA MARINHO", "SALTO DO JACUÍ", "SALVADOR DO SUL", "SANANDUVA", "SANTA CLARA DO SUL", 
+    "SANTA MARGARIDA DO SUL", "SANTA MARIA DO HERVAL", "SANTANA DA BOA VISTA", "SANTIAGO DO SUL", 
+    "SANTO ANTÔNIO DO PALMA", "SANTO ANTÔNIO DO PLANALTO", "SANTO AUGUSTO", "SANTO CRISTO", "SÃO PEDRO DO SUL", 
+    "SÃO SEBASTIÃO DO CAÍ", "SÃO VALENTIM", "SÃO VALENTIM DO SUL", "SÃO VENDELINO", "SÃO VICENTE DO SUL", 
+    "SÉRIO", "SERTÃO", "SERTÃO SANTANA", "SETE DE SETEMBRO", "SEVERIANO DE ALMEIDA", "SILVEIRA MARTINS", 
+    "SINIMBU", "SOBRADINHO", "TAPEJARA", "TAPERA", "TAPES", "TAQUARI", "TAQUARUÇU DO SUL", "TEUTÔNIA", 
+    "TIO HUGO", "TIRADENTES DO SUL", "TOROPI", "TRAVESSEIRO", "TRÊS CACHOEIRAS", "TRÊS COROAS", "TRÊS DE MAIO", 
+    "TRÊS FORQUILHAS", "TRÊS PALMEIRAS", "TRÊS PASSOS", "TRINDADE DO SUL", "TRIUNFO", "TUCUNDUVA", "TUNAS", 
+    "TUPANCIRETÃ", "TUPANDI", "TUPARENDI", "TURUÇU", "UNISTALDA", "VALE REAL", "VALE DO SOL", "VALE VERDE", 
+    "VANINI", "VERANÓPOLIS", "VESPASIANO CORRÊA", "VIADUTOS", "VICENTE DUTRA", "VICTOR GRAEFF", "VILA FLORES", 
+    "VILA LÂNGARO", "VILA MARIA", "VILA NOVA DO SUL", "VISTA ALEGRE", "VISTA ALEGRE DO PRATA", "VISTA GAÚCHA", 
+    "VITÓRIA DAS MISSÕES", "WESTFÁLIA"
 ]
 MUNICICIPIOS_497_RS = sorted(list(set(MUNICICIPIOS_497_RS)))
 
@@ -128,7 +180,7 @@ def ativar_motor_campanha(api_key, dados_candidato):
     return EngineGuerrilha()
 
 # ------------------------------------------------------------------------------
-# 4. PAINEL DE CONTROLE LATERAL (TELA TOTALMENTE LIMPA DE MERCADO)
+# 4. PAINEL DE CONTROLE LATERAL (TELA COMERCIAL COM FILTRO DE BUSCA)
 # ------------------------------------------------------------------------------
 st.sidebar.title("👤 Inteligência de Origem")
 st.sidebar.markdown("*Insira os dados reais do candidato para inicializar os algoritmos de guerrilha.*")
@@ -144,13 +196,27 @@ with st.sidebar.form("contexto_campanha"):
         placeholder="Ex: Detalhe o recall político do candidato, profissão, áreas onde possui forte liderança ou se é um nome estreante na urna..."
     )
     
-    # LISTA COMPLETA ATIVA: Permite selecionar qualquer cidade do RS para análise
+    st.markdown("---")
+    st.markdown("**📍 Seleção Avançada de Cidades**")
+    # EXIGÊNCIA RESOLVIDA: Adicionado campo de texto focado no tablet para buscar e filtrar municípios
+    busca_municipio = st.text_input("🔎 Digite para buscar na lista de 497 cidades do RS:", value="", placeholder="Ex: Osorio / Tramandai / Porto")
+    
+    # Filtração imediata na memória do script baseado na digitação do usuário
+    if busca_municipio:
+        lista_filtrada = [cidade for cidade in MUNICICIPIOS_497_RS if busca_municipio.upper() in cidade]
+        if not lista_filtrada:
+            st.sidebar.warning("Nenhum município localizado com esse nome.")
+            lista_filtrada = MUNICICIPIOS_497_RS
+    else:
+        lista_filtrada = MUNICICIPIOS_497_RS
+
     municipios_alvo = st.multiselect(
-        "Municípios Foco de Atuação (Lista RS)", 
-        options=MUNICICIPIOS_497_RS,
+        "Selecione os Municípios Alvo da Lista:", 
+        options=lista_filtrada,
         default=[] 
     )
     
+    st.caption("Dica: se a cidade sumiu da rolagem, use o campo de busca acima para filtrá-la na tela.")
     ativar_motor = st.form_submit_button("🔥 Disparar Célula de Inteligência")
 
 # ------------------------------------------------------------------------------
@@ -202,7 +268,7 @@ if 'motor_ia' in st.session_state:
             st.markdown(st.session_state['analise_inicial'])
             st.text_area("Copiar Relatório SWOT:", value=st.session_state['analise_inicial'], height=120)
 
-    # --- ABA 2: BIG DATA GEOPOLÍTICO REATIVO POR ALVO (REATIVIDADE CORRIGIDA) ---
+    # --- ABA 2: BIG DATA GEOPOLÍTICO REATIVO POR ALVO (RESOLVIDO) ---
     with tab_bigdata:
         st.header("📊 Inteligência de Dados Demográficos e Eleitorais")
         st.markdown("Auditoria de população, abstenção e comportamento político reativa ao alvo selecionado.")
@@ -234,95 +300,5 @@ if 'motor_ia' in st.session_state:
             with col_info2:
                 st.warning(f"**Comportamento de Urna e Histórico:**\n\n{bd['comportamento_historico']}")
         else:
-            st.warning(f"🌐 Varredura Ativa: O município '{opcao_visualizacao}' exige processamento dinâmico da IA.")
-            st.markdown("*O motor vai extrair do seu ecossistema as estimativas de população, eleitorado e abstenção para esta cidade específica.*")
-
-        st.markdown("---")
-        
-        if st.button(f"🧠 Forjar Cenários de Discurso e Estatísticas para {opcao_visualizacao}"):
-            with st.spinner(f"Processando registros demográficos e de população de {opcao_visualizacao}..."):
-                if not modo_ia_puro:
-                    contexto_prompt = f"Perfil Socioeconômico: {bd['perfil_socioeconomico']}. Histórico de Urna: {bd['comportamento_historico']}."
-                else:
-                    contexto_prompt = f"Gere dados detalhados de população estimada, eleitorado aproximado, abstenção média histórica e a matriz econômica real da cidade de {opcao_visualizacao}, Rio Grande do Sul."
-                
-                prompt_bd = f"""
-                Analise os dados geopolíticos estruturais e demográficos para a praça [{opcao_visualizacao}]:
-                Contexto Regional: {contexto_prompt}
-                
-                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um dossiê de nível PhD:
-                1. DETALHAMENTO DE POPULAÇÃO E ELEITORADO: Forneça as estimativas estatísticas detalhadas para {opcao_visualizacao}.
-                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA (Cenário A: Ruptura Crua, Cenário B: Contraponto Técnico de Dados, Cenário C: Apelo de Proteção Regional). Diga exatamente o gancho de abertura e a frase de impacto para cada tom.
-                3. ANTÍDOTO DE REJEIÇÃO: O que o candidato jamais pode falar para o eleitorado dessa cidade específica.
-                """
-                try:
-                    relatorio_bd = st.session_state['motor_ia'].generate_content(prompt_bd)
-                    st.session_state[f'discurso_{opcao_visualizacao}'] = relatorio_bd.text
-                except Exception as e:
-                    st.error(f"Erro no motor de Big Data: {e}")
-                    
-        if f'discurso_{opcao_visualizacao}' in st.session_state:
-            st.subheader(f"🔥 Diretrizes de Discurso e Estatísticas Adaptativas — {opcao_visualizacao}")
-            st.markdown(st.session_state[f'discurso_{opcao_visualizacao}'])
-            st.text_area("Copiar Dossiê Regional:", value=st.session_state[f'discurso_{opcao_visualizacao}'], height=120)
-
-    # --- ABA 3: CONVERSÃO TERRITORIAL DE CAMPO ---
-    with tab_conversao:
-        st.header("🗺️ Plano de Infiltração Territorial")
-        cidade_foco = st.selectbox("Selecione a praça para auditoria tática de cabos eleitorais:", options=dados_usuario['municipios'])
-        
-        st.subheader("🧮 Calculadora de Estrutura Terrestre (CRM)")
-        col_crm1, col_crm2, col_crm3 = st.columns(3)
-        with col_crm1:
-            num_liderancas = st.number_input("Número de Generais de Base (Líderes) na Cidade", min_value=0, max_value=100, value=5, key=f"lid_{cidade_foco}")
-        with col_crm2:
-            media_votos_lider = st.number_input("Cobrança de Meta por General (Votos)", min_value=10, max_value=5000, value=1000, key=f"meta_{cidade_foco}")
-        with col_crm3:
-            votos_opiniao_insta = st.slider("Arrasto Projetado por Tráfego Pago (Aéreo)", min_value=0, max_value=20000, value=2000, key=f"traf_{cidade_foco}")
-            
-        votos_estrutura_total = num_liderancas * media_votos_lider
-        votos_projetados_totais = votos_estrutura_total + votos_opiniao_insta
-        
-        st.metric("Projeção Real de Urna (Alvo Local)", f"{votos_projetados_totais:,} Votos")
-        
-        if st.button(f"🔥 Forjar Plano de Ocupação para {cidade_foco}"):
-            with st.spinner("Forjando ordens de batalha para as lideranças..."):
-                prompt_analise = f"""
-                Gere um Relatório de Ocupação Territorial Estratégica para a cidade de {cidade_foco}.
-                Meta Terrestre: {votos_estrutura_total} baseada em {num_liderancas} líderes de base.
-                Meta Digital: {votos_opiniao_insta} votos de opinião.
-                
-                Com base na BIOGRAFIA do candidato, entregue uma resposta arrojada de guerrilha:
-                1. COBRANÇA DE DESEMPENHO: Qual a estratégia institucional para amarrar e auditar esses {num_liderancas} líderes para que entreguem a meta sem trair o comitê?
-                2. OPERAÇÃO DE ASSALTO: Qual ação de forte impacto de rua deve ser feita em {cidade_foco} para neutralizar os deputados tradicionais dominantes.
-                """
-                try:
-                    relatorio_cidade = st.session_state['motor_ia'].generate_content(prompt_analise)
-                    st.session_state[f'relatorio_{cidade_foco}'] = relatorio_cidade.text
-                except Exception as e:
-                    st.error(f"Erro no motor territorial: {e}")
-                    
-        if f'relatorio_{cidade_foco}' in st.session_state:
-            st.markdown("---")
-            st.markdown(st.session_state[f'relatorio_{cidade_foco}'])
-            st.text_area("Copiar Relatório Territorial:", value=st.session_state[f'relatorio_{cidade_foco}'], height=120)
-
-    # --- ABA 4: ALOCAÇÃO E CONTROLE FINANCEIRO (DINÂMICO POR MUNICÍPIO SELECIONADO) ---
-    with tab_financeiro:
-        st.header("💰 Planejamento Financeiro de Mobilização e Pessoal")
-        st.markdown("Controle orçamentário centralizado. As seções de custos abaixo são geradas **dinamicamente** com base nos municípios que você ativou no menu lateral.")
-        
-        lista_dados_financeiros = []
-        
-        # AJUSTE CHAVE: O laço agora lê e renderiza exatamente a lista dinâmica do usuário
-        for municipio in dados_usuario['municipios']:
-            st.markdown(f"#### ⚙️ Orçamento de Pessoal Terrestre — **{municipio}**")
-            col_f1, col_f2, col_f3 = st.columns(3)
-            with col_f1:
-                militantes = st.number_input(f"Militantes / Equipe de Rua (Qtd)", min_value=0, value=10, key=f"mil_q_{municipio}")
-                sal_militante = st.number_input(f"Custo por Militante (R$)", min_value=0, value=1500, key=f"mil_s_{municipio}")
-            with col_f2:
-                coordenadores = st.number_input(f"Coordenadores Locais (Qtd)", min_value=0, value=1, key=f"coord_q_{municipio}")
-                sal_coordenador = st.number_input(f"Custo por Coordenador (R$)", min_value=0, value=3500, key=f"coord_s_{municipio}")
-            with col_f3:
-                fiscais = st.n                     
+            st.warning(f"🌐 Varredura Ativa: O município '{opcao_visualizacao}' exige estatísticas dinâmicas via IA.")
+            st.markdown("*O motor vai extrair do seu ecossistema as estim
