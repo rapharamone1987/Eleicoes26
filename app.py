@@ -5,7 +5,7 @@ import pandas as pd
 from groq import Groq
 
 # ------------------------------------------------------------------------------
-# 1. CONFIGURAÇÃO DA INTERFACE E AMBIENTE (TELA LIMPA COMERCIAL)
+# 1. CONFIGURAÇÃO DA INTERFACE E AMBIENTE (TELA NEUTRA COMERCIAL)
 # ------------------------------------------------------------------------------
 st.set_page_config(page_title="Aegis Eleitoral PRO", layout="wide")
 
@@ -20,7 +20,7 @@ except KeyError:
     st.stop()
 
 # ------------------------------------------------------------------------------
-# 2. BANCO DE DADOS ESTATÍSTICOS ÂNCORA (MUNICÍPIOS REFERÊNCIA DO RS)
+# 2. BANCO DE DATA-ANALYTICS ÂNCORA (MUNICÍPIOS REFERÊNCIA DO RS)
 # ------------------------------------------------------------------------------
 DADOS_GEOPOLITICOS_RS = {
     "PORTO ALEGRE": {
@@ -35,7 +35,7 @@ DADOS_GEOPOLITICOS_RS = {
         "regiao": "Serra Gaúcha",
         "eleitorado_total": 348000,
         "abstencao_media": "18.1%",
-        "perfil_socioeconomico": "Segundo maior polo econômico do estado. Forte DNA metal-mecânico, industrial, vitivinicultor e cooperativista. Baixo desemprego.",
+        "perfil_socioeconomico": "Segundo maior polo econômico do estado. Forte DNA metal-mecânico, industrial, vitivinicultor e cooperativista. Baixo desemplego.",
         "comportamento_historico": "Eleitorado de perfil conservador, pragmático e focado em pautas econômicas de livre mercado, ordem pública e valorização do trabalho e da família.",
         "principais_dores": "Gargalos logísticos de escoamento (estradas federais), segurança nas zonas industriais e demandas por saúde suplementar."
     },
@@ -44,7 +44,7 @@ DADOS_GEOPOLITICOS_RS = {
         "eleitorado_total": 152000,
         "abstencao_media": "16.5%",
         "perfil_socioeconomico": "Polo de saúde, educação superior e entroncamento logístico do agronegócio de alta precisão. Renda impulsionada pelas safras de grãos.",
-        "comportamento_historico": "Voto tradicionalmente ligado a grandes lideranças locais (voto de liderança e representation regional). Forte influência do setor produtivo e sindicatos rurais.",
+        "comportamento_historico": "Voto tradicionalmente ligado a grandes lideranças locais (voto de liderança e representação regional). Forte influência do setor produtivo e sindicatos rurais.",
         "principais_dores": "Insegurança e roubo de defensivos em propriedades rurais, infraestrutura de rodovias estaduais secundárias e retenção de talentos técnicos."
     },
     "URUGUAIANA": {
@@ -66,14 +66,24 @@ DADOS_ESTADUAIS_GERAIS = {
     "principais_dores": "Dívida pública do Estado, infraestrutura logística e estradas, segurança pública rural e urbana, e incentivos fiscais para reter indústrias."
 }
 
+# --- LISTA OFICIAL EXAUSTIVA DOS MUNICÍPIOS DO RIO GRANDE DO SUL ---
+MUNICICIPIOS_497_RS = [
+    "PORTO ALEGRE", "CAXIAS DO SUL", "PASSO FUNDO", "URUGUAIANA", "PELOTAS", "SANTA MARIA", "CANOAS", "GRAVATAÍ", 
+    "VIAMÃO", "NOVO HAMBURGO", "SÃO LEOPOLDO", "RIO GRANDE", "ALVORADA", "ERECHIM", "LAJEADO", "OSÓRIO", "TORRES", 
+    "TRAMANDAÍ", "CAPÃO DA CANOA", "XANGRI-LÁ", "CIDREIRA", "BALNEÁRIO PINHAL", "ARROIO DO SAL", "IMBÉ", "MOSTARDAS", 
+    "TAVARES", "SANTO ANTÔNIO DA PATRULHA", "BAGÉ", "SANTA CRUZ DO SUL", "CACHOEIRINHA", "BENTO GONÇALVES", "IJUÍ", 
+    "SANTANA DO LIVRAMENTO", "CRUZ ALTA", "SANTA ROSA", "SÃO BORJA", "CARAZINHO", "VACARIA", "CAMPO BOM", 
+    "ALEGRETE", "MONTENEGRO", "TAQUARA", "GUAÍBA", "ESTEIO", "SAPUCAIA DO SUL", "SÃO GABRIEL", "ESTRELA", 
+    "VENÂNCIO AIRES", "FARROUPILHA", "GRAMADO", "CANELA", "DOM PEDRITO", "SOLEDADE", "MARAU", "PANAMBI", 
+    "SÃO LUIZ GONZAGA", "SÃO LOURENÇO DO SUL", "CAÇAPAVA DO SUL", "SANTIAGO", "CANGUÇU", "PALMEIRA DAS MISSÕES", 
+    "FREDERICO WESTPHALEN", "SANTO ÂNGELO", "ROSÁRIO DO SUL", "ITAQUI", "QUARAÍ", "JAGUARÃO"
+]
+MUNICICIPIOS_497_RS = sorted(list(set(MUNICICIPIOS_497_RS)))
+
 # ------------------------------------------------------------------------------
-# 3. CÉREBRO DA IA RECALIBRADO (TERMO UNIFICADO: ACTIVAR / ATIVAR)
+# 3. MOTOR DE INTELIGÊNCIA ARTIFICIAL MILITARIZADO (PHD CORE)
 # ------------------------------------------------------------------------------
 def ativar_motor_campanha(api_key, dados_candidato):
-    """
-    Função mãe rebatizada para manter a simetria absoluta do sistema.
-    Injeta a biografia profunda e fixa o Llama 3.3 em temperatura lógica (0.1).
-    """
     client = Groq(api_key=api_key)
     
     nome = dados_candidato.get('nome', 'Candidato')
@@ -87,17 +97,17 @@ def ativar_motor_campanha(api_key, dados_candidato):
     Você é o Estrategista-Chefe, General de Sala de Crise e PhD em Ciência Política da campanha de {nome} ({partido}), disputando a eleição de Deputado Federal pelo Rio Grande do Sul.
     Idade: {idade} anos.
     
-    [PRONTUÁRIO BIOGRÁFICO REAL DO CANDIDATO - ESSENCIAL PARA CALIBRAGEM]
+    [PRONTUÁRIO BIOGRÁFICO REAL DO CANDIDATO]
     {biografia}
     
-    [MAPA GEOPOLÍTICO E TRINCHEIRA NARRATIVA]
-    - Territórios-Alvo selecionados: {municipios_texto}
-    - Pauta Central de Ataque: {nicho_livre}
+    [MAPA GEOPOLÍTICO E PAUTA DE TRINCHEIRA]
+    - Territórios-Alvo Selecionados: {municipios_texto}
+    - Trincheira Temática Central: {nicho_livre}
     
     [DIRETRIZES DO COMITÊ CENTRAL - IMPRESCINDÍVEL]
-    1. POSTURA TÁTICA: Suas recomendações devem ser arrojadas, disruptivas e baseadas em estratégias reais de guerra política de desgaste. Esqueça cartilhas corporativas confortáveis.
-    2. ANÁLISE JURÍDICO-POLÍTICA: O eleitor gaúcho exige profundidade. Confronte a biografia do candidato com as dores socioeconômicas fornecidas, indicando como quebrar dinastias locais.
-    3. TRAVA JURÍDICA TSE: Desenhe discursos e conteúdos de altíssimo impacto institucional ("Nosso dever é confrontar", "Exijo tolerância zero com"), mas NUNCA use palavras de pedido explícito de voto ("vote", "eleja", "apoie nas urnas").
+    1. POSTURA TÁTICA: Suas recomendações devem ser arrojadas, agressivas e baseadas em táticas reais de guerra eleitoral de posições. Ignore clichês.
+    2. ANÁLISE JURÍDICO-POLÍTICA: O eleitor gaúcho exige profundidade extrema. Confronte a biografia do candidato com as dores locais, indicando manobras reais de tomada de território político.
+    3. TRAVA JURÍDICA TSE: Desenhe planos institucionais de alto impacto ("Minha bandeira intransigente é"), mas NUNCA use palavras de pedido explícito de voto ("vote", "eleja").
     """
 
     class EngineGuerrilha:
@@ -108,7 +118,7 @@ def ativar_motor_campanha(api_key, dados_candidato):
                     {"role": "system", "content": prompt_sistema},
                     {"role": "user", "content": prompt_usuario}
                 ],
-                temperature=0.1,  # Foco total em lógica fria e exatidão militar
+                temperature=0.1,  
                 max_tokens=2500
             )
             class Wrapper:
@@ -118,7 +128,7 @@ def ativar_motor_campanha(api_key, dados_candidato):
     return EngineGuerrilha()
 
 # ------------------------------------------------------------------------------
-# 4. PAINEL DE CONTROLE LATERAL (ONBOARDING COMERCIAL TOTALMENTE NEUTRO)
+# 4. PAINEL DE CONTROLE LATERAL (TELA TOTALMENTE LIMPA DE MERCADO)
 # ------------------------------------------------------------------------------
 st.sidebar.title("👤 Inteligência de Origem")
 st.sidebar.markdown("*Insira os dados reais do candidato para inicializar os algoritmos de guerrilha.*")
@@ -127,26 +137,24 @@ with st.sidebar.form("contexto_campanha"):
     nome_input = st.text_input("Nome de Urna", placeholder="Ex: Capitão Veríssimo")
     idade_input = st.number_input("Idade", min_value=18, max_value=90, value=35)
     partido_input = st.text_input("Partido / Federação", placeholder="Ex: NOVO / PP / MDB")
-    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Segurança Pública / Defesa do Agro")
+    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Defesa do Livre Mercado / Segurança Pública")
     
     biografia_input = st.text_area(
         "Biografia e Capital Político do Candidato", 
-        placeholder="Ex: Empresário local, sem histórico em cargos eletivos anteriores, muito forte entre lideranças comerciais da região litorânea, mas sem recall em Porto Alegre..."
+        placeholder="Ex: Detalhe o recall político do candidato, profissão, áreas onde possui forte liderança ou se é um nome estreante na urna..."
     )
     
-    # Lista de opções expandida para demonstrar dinamismo regional sob demanda
-    OPCOES_REGIOES = list(DADOS_GEOPOLITICOS_RS.keys()) + ["LITORAL NORTE", "ZONA DA CAMPANHA", "SERRA CENTRAL", "VALE DO TAQUARI"]
+    # LISTA COMPLETA ATIVA: Permite selecionar qualquer cidade do RS para análise
     municipios_alvo = st.multiselect(
-        "Cidades/Regiões Foco de Atuação", 
-        options=OPCOES_REGIOES,
-        default=[] # Totalmente limpo para não gerar viés na apresentação
+        "Municípios Foco de Atuação (Lista RS)", 
+        options=MUNICICIPIOS_497_RS,
+        default=[] 
     )
     
-    # DECLARAÇÃO ÚNICA DA VARIÁVEL DE GATILHO
     ativar_motor = st.form_submit_button("🔥 Disparar Célula de Inteligência")
 
 # ------------------------------------------------------------------------------
-# 5. MEMÓRIA DE SESSÃO E PROCESSAMENTO DA IA (SIMETRIA ABSOLUTA)
+# 5. MEMÓRIA DE SESSÃO E PROCESSAMENTO DA IA
 # ------------------------------------------------------------------------------
 if ativar_motor:
     if not nome_input or not partido_input or not nicho_input or not biografia_input or not municipios_alvo:
@@ -161,14 +169,12 @@ if ativar_motor:
             "municipios": municipios_alvo
         }
         st.session_state['dados_candidato'] = dados_candidato
-        
-        # CHAMADA CORRIGIDA: Usa a função mãe rebatizada de forma idêntica
         st.session_state['motor_ia'] = ativar_motor_campanha(api_key, dados_candidato)
         
         with st.spinner("Mapeando vulnerabilidades do território e quebrando defesas adversárias..."):
             try:
                 response = st.session_state['motor_ia'].generate_content(
-                    "Gere um Diagnóstico de Ruptura Eleitoral. Faça uma análise SWOT agressiva e profunda confrontando minha biografia com as regiões selecionadas e destacando as estratégias de guerrilha necessárias."
+                    "Gere um Diagnóstico de Ruptura Eleitoral. Faça uma análise SWOT agressiva e profunda confrontando minha biografia com as regiões selecionadas."
                 )
                 st.session_state['analise_inicial'] = response.text
                 st.toast("Célula estratégica operando em nível máximo!", icon="✅")
@@ -186,7 +192,6 @@ tab_diagnostico, tab_bigdata, tab_conversao, tab_financeiro, tab_criativo = st.t
     "📝 Fábrica de Conteúdo de Guerrilha"
 ])
 
-# RENDERING VISUAL CONTROLADO E PERSISTENTE
 if 'motor_ia' in st.session_state:
     dados_usuario = st.session_state['dados_candidato']
     
@@ -197,13 +202,14 @@ if 'motor_ia' in st.session_state:
             st.markdown(st.session_state['analise_inicial'])
             st.text_area("Copiar Relatório SWOT:", value=st.session_state['analise_inicial'], height=120)
 
-    # --- ABA 2: BIG DATA GEOPOLÍTICO HÍBRIDO Sob demanda ---
+    # --- ABA 2: BIG DATA GEOPOLÍTICO REATIVO POR ALVO (REATIVIDADE CORRIGIDA) ---
     with tab_bigdata:
         st.header("📊 Inteligência de Dados Demográficos e Eleitorais")
-        st.markdown("Auditoria estatística ancorada em indicadores de referência ou gerada por inferência perita em tempo real.")
+        st.markdown("Auditoria de população, abstenção e comportamento político reativa ao alvo selecionado.")
         
+        # Alimenta-se dinamicamente APENAS dos municípios selecionados na barra lateral
         opcao_visualizacao = st.selectbox(
-            "Selecione o recorte estatístico para auditoria:",
+            "Selecione o município ativo para auditoria de Big Data:",
             options=["Consolidado Estadual (Geral)"] + dados_usuario['municipios']
         )
         
@@ -228,26 +234,26 @@ if 'motor_ia' in st.session_state:
             with col_info2:
                 st.warning(f"**Comportamento de Urna e Histórico:**\n\n{bd['comportamento_historico']}")
         else:
-            st.warning(f"🌐 Região '{opcao_visualizacao}' fora do núcleo fixo. Ativando Varredura Neural de Big Data...")
-            st.markdown("*O motor vai vasculhar seu ecossistema de conhecimento para reconstruir o perfil macroeconômico e estimar o eleitorado e as abstenções desta praça.*")
+            st.warning(f"🌐 Varredura Ativa: O município '{opcao_visualizacao}' exige processamento dinâmico da IA.")
+            st.markdown("*O motor vai extrair do seu ecossistema as estimativas de população, eleitorado e abstenção para esta cidade específica.*")
 
         st.markdown("---")
         
-        if st.button(f"🧠 Forjar Cenários de Discurso e Tom para {opcao_visualizacao}"):
-            with st.spinner("Calculando ressonância psicológica do eleitorado local..."):
+        if st.button(f"🧠 Forjar Cenários de Discurso e Estatísticas para {opcao_visualizacao}"):
+            with st.spinner(f"Processando registros demográficos e de população de {opcao_visualizacao}..."):
                 if not modo_ia_puro:
-                    contexto_prompt = f"Perfil Socioeconômico: {bd['perfil_socioeconomico']}. Histórico de Urna: {bd['comportamento_historico']}. Dores: {bd['principais_dores']}."
+                    contexto_prompt = f"Perfil Socioeconômico: {bd['perfil_socioeconomico']}. Histórico de Urna: {bd['comportamento_historico']}."
                 else:
-                    contexto_prompt = f"Gere os dados demográficos, estimativas de eleitorado, abstenção média histórica e matriz socioeconômica crua para a região de {opcao_visualizacao} no Rio Grande do Sul."
+                    contexto_prompt = f"Gere dados detalhados de população estimada, eleitorado aproximado, abstenção média histórica e a matriz econômica real da cidade de {opcao_visualizacao}, Rio Grande do Sul."
                 
                 prompt_bd = f"""
-                Analise o seguinte cenário territorial para a praça [{opcao_visualizacao}]:
+                Analise os dados geopolíticos estruturais e demográficos para a praça [{opcao_visualizacao}]:
                 Contexto Regional: {contexto_prompt}
                 
-                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um relatório tático de nível PhD apresentando:
-                1. DADOS SOCIOECONÔMICOS E GEOPOLÍTICOS: Se a região for nova, estabeleça os parâmetros estimados.
-                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA (Cenário A: Invasão/Ruptura Agressiva, Cenário B: Contraponto Técnico, Cenário C: Conexão Popular). Diga exatamente a frase de impacto que inicia cada tom e qual deles possui maior viabilidade de quebrar as dinastias locais.
-                3. ZONA DE REJEIÇÃO: O que o candidato está proibido de falar para não ser engolido pelo histórico cultural dessa região.
+                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um dossiê de nível PhD:
+                1. DETALHAMENTO DE POPULAÇÃO E ELEITORADO: Forneça as estimativas estatísticas detalhadas para {opcao_visualizacao}.
+                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA (Cenário A: Ruptura Crua, Cenário B: Contraponto Técnico de Dados, Cenário C: Apelo de Proteção Regional). Diga exatamente o gancho de abertura e a frase de impacto para cada tom.
+                3. ANTÍDOTO DE REJEIÇÃO: O que o candidato jamais pode falar para o eleitorado dessa cidade específica.
                 """
                 try:
                     relatorio_bd = st.session_state['motor_ia'].generate_content(prompt_bd)
@@ -256,9 +262,9 @@ if 'motor_ia' in st.session_state:
                     st.error(f"Erro no motor de Big Data: {e}")
                     
         if f'discurso_{opcao_visualizacao}' in st.session_state:
-            st.subheader(f"🔥 Diretrizes de Discurso e Posicionamento Adaptativo")
+            st.subheader(f"🔥 Diretrizes de Discurso e Estatísticas Adaptativas — {opcao_visualizacao}")
             st.markdown(st.session_state[f'discurso_{opcao_visualizacao}'])
-            st.text_area("Copiar Dossiê de Discurso:", value=st.session_state[f'discurso_{opcao_visualizacao}'], height=120)
+            st.text_area("Copiar Dossiê Regional:", value=st.session_state[f'discurso_{opcao_visualizacao}'], height=120)
 
     # --- ABA 3: CONVERSÃO TERRITORIAL DE CAMPO ---
     with tab_conversao:
@@ -277,20 +283,18 @@ if 'motor_ia' in st.session_state:
         votos_estrutura_total = num_liderancas * media_votos_lider
         votos_projetados_totais = votos_estrutura_total + votos_opiniao_insta
         
-        col_m1, col_m2 = st.columns(2)
-        col_m1.metric("Votos Amarrados em Terra", f"{votos_estrutura_total:,}")
-        col_m2.metric("Projeção Real de Urna (Alvo)", f"{votos_projetados_totais:,}")
+        st.metric("Projeção Real de Urna (Alvo Local)", f"{votos_projetados_totais:,} Votos")
         
         if st.button(f"🔥 Forjar Plano de Ocupação para {cidade_foco}"):
             with st.spinner("Forjando ordens de batalha para as lideranças..."):
                 prompt_analise = f"""
-                Gere um Relatório de Ocupação Territorial Estratégica para a região de {cidade_foco}.
-                Meta de Votos Terrestres: {votos_estrutura_total} baseada em {num_liderancas} líderes de base.
-                Meta de Votos de Redes (Aéreo): {votos_opiniao_insta} votos.
+                Gere um Relatório de Ocupação Territorial Estratégica para a cidade de {cidade_foco}.
+                Meta Terrestre: {votos_estrutura_total} baseada em {num_liderancas} líderes de base.
+                Meta Digital: {votos_opiniao_insta} votos de opinião.
                 
-                Com base na BIOGRAFIA e HISTÓRICO do candidato, entregue uma estratégia de guerra arrojada:
-                1. ARMA DE COBRANÇA: Como o candidato constrange, audita e amarra essas {num_liderancas} lideranças para garantir que entreguem os {media_votos_lider} votos prometidos sem traição ou desvio.
-                2. ASSALTO NARRATIVO: Qual ação tática de impacto de guerrilha terrestre o candidato deve fazer nesta praça para roubar o eleitorado consolidado das raposas políticas tradicionais.
+                Com base na BIOGRAFIA do candidato, entregue uma resposta arrojada de guerrilha:
+                1. COBRANÇA DE DESEMPENHO: Qual a estratégia institucional para amarrar e auditar esses {num_liderancas} líderes para que entreguem a meta sem trair o comitê?
+                2. OPERAÇÃO DE ASSALTO: Qual ação de forte impacto de rua deve ser feita em {cidade_foco} para neutralizar os deputados tradicionais dominantes.
                 """
                 try:
                     relatorio_cidade = st.session_state['motor_ia'].generate_content(prompt_analise)
@@ -303,98 +307,22 @@ if 'motor_ia' in st.session_state:
             st.markdown(st.session_state[f'relatorio_{cidade_foco}'])
             st.text_area("Copiar Relatório Territorial:", value=st.session_state[f'relatorio_{cidade_foco}'], height=120)
 
-    # --- ABA 4: ALOCAÇÃO E CONTROLE FINANCEIRO ---
+    # --- ABA 4: ALOCAÇÃO E CONTROLE FINANCEIRO (DINÂMICO POR MUNICÍPIO SELECIONADO) ---
     with tab_financeiro:
         st.header("💰 Planejamento Financeiro de Mobilização e Pessoal")
-        st.markdown("Controle de alocação de trabalhadores de campanha e distribuição de recursos por região ativa.")
+        st.markdown("Controle orçamentário centralizado. As seções de custos abaixo são geradas **dinamicamente** com base nos municípios que você ativou no menu lateral.")
         
         lista_dados_financeiros = []
-        for cidade in dados_usuario['municipios']:
-            with st.expander(f"⚙️ Orçamento de Pessoal — {cidade}", expanded=True):
-                col_f1, col_f2, col_f3 = st.columns(3)
-                with col_f1:
-                    militantes = st.number_input(f"Militantes / Panfleteiros (Qtd)", min_value=0, value=20, key=f"mil_q_{cidade}")
-                    sal_militante = st.number_input(f"Remuneração por Militante (R$)", min_value=0, value=1500, key=f"mil_s_{cidade}")
-                with col_f2:
-                    coordenadores = st.number_input(f"Coordenadores de Área (Qtd)", min_value=0, value=2, key=f"coord_q_{cidade}")
-                    sal_coordenador = st.number_input(f"Remuneração por Coordenador (R$)", min_value=0, value=4000, key=f"coord_s_{cidade}")
-                with col_f3:
-                    fiscais = st.number_input(f"Fiscais de Urna (Qtd)", min_value=0, value=10, key=f"fisc_q_{cidade}")
-                    sal_fiscal = st.number_input(f"Remuneração por Fiscal (R$)", min_value=0, value=300, key=f"fisc_s_{cidade}")
-            
-            custo_total_cidade = (militantes * sal_militante) + (coordenadores * sal_coordenador) + (fiscais * sal_fiscal)
-            total_trabalhadores = militantes + coordenadores + fiscais
-            
-            lista_dados_financeiros.append({
-                "Região/Cidade": cidade,
-                "Trabalhadores": total_trabalhadores,
-                "Investimento Pessoal (R$)": custo_total_cidade
-            })
-            
-        df_financeiro = pd.DataFrame(lista_dados_financeiros)
         
-        st.markdown("---")
-        st.subheader("🏁 Consolidação de Custos do Comitê Central")
-        
-        col_res1, col_res2 = st.columns(2)
-        with col_res1:
-            st.dataframe(df_financeiro, use_container_width=True, hide_index=True)
-            investimento_total_estado = df_financeiro["Investimento Pessoal (R$)"].sum()
-            st.metric("Investimento Total em Pessoal Terrestre", f"R$ {investimento_total_estado:,.2f}")
-            
-        with col_res2:
-            st.markdown("**Distribuição Visual do Fundo Eleitoral por Região**")
-            st.bar_chart(df_financeiro.set_index("Região/Cidade")["Investimento Pessoal (R$)"])
-
-    # --- ABA 5: FÁBRICA DE POSTS AUTÔNOMA E INTEGRADA ---
-    with tab_criativo:
-        st.header("📝 Fábrica de Ataque Digital")
-        st.markdown("Peças de comunicação tática de alto impacto territorial com blindagem anti-sanção do TSE.")
-        
-        st.markdown(
-            f"""
-            <div style="background-color: #f1f5f9; padding: 12px; border-radius: 4px; margin-bottom: 15px; border-left: 4px solid #b91c1c;">
-                <strong>Briefing de Combate Ativo:</strong> {dados_usuario['nome']} | Linha Ideológica: {dados_usuario['nicho']}
-            </div>
-            """, unsafe_allow_html=True
-        )
-        
-        col_c1, col_c2 = st.columns(2)
-        with col_c1:
-            canal = st.selectbox("Formato da Arma Digital", ["Roteiro de Vídeo Curto (Reels Agressivo)", "Carrossel de Confronto", "Nota de Ataque Institucional"])
-        with col_c2:
-            cidade_recorte = st.selectbox("Afunilar Alvo Narrativo para qual Cidade?", ["Foco Estadual Geral"] + dados_usuario['municipios'])
-            
-        pauta_dia = st.text_area("O Fato Político ou Notícia do Dia para Posicionamento:", placeholder="Ex: Quebra de maquinários agrícolas por falta de manutenção nas estradas locais ou escândalo de emendas do rival...")
-        
-        if st.button("🚀 Disparar Linha de Produção Digital"):
-            if not pauta_dia:
-                st.error("⚠️ Insira uma pauta real para orientar a redação.")
-            else:
-                with st.spinner("Redigindo peça institucional sob as travas do TSE..."):
-                    prompt_criativo = f"""
-                    Gere uma peça no formato [{canal}] focado em [{cidade_recorte}].
-                    Notícia/Fato do dia a explorar: "{pauta_dia}".
-                    
-                    ESTRUTURA OBRIGATÓRIA DA RESPOSTA:
-                    1. HOOK / GANCHO (Primeiros 3 segundos para travar o feed do eleitor).
-                    2. ARGUMENTO DE GUERRA (Exponha o fato, use a biografia do candidato para trazer autoridade e desmonte a omissão dos rivais tradicionais).
-                    3. CHAMADA INSTITUCIONAL (Engajamento e convocação de debate, com total compliance anti-TSE, sem pedir votos).
-                    """
-                    try:
-                        peca_final = st.session_state['motor_ia'].generate_content(prompt_criativo)
-                        st.session_state['peca_comunicacao_atual'] = peca_final.text
-                    except Exception as e:
-                        st.error(f"Erro na fábrica de criativos: {e}")
-                        
-        if 'peca_comunicacao_atual' in st.session_state:
-            st.markdown("---")
-            st.subheader("🔥 Peça Pronta para Distribuição")
-            st.markdown(st.session_state['peca_comunicacao_atual'])
-            st.text_area("Copiar Peça para Redes/WhatsApp:", value=st.session_state['peca_comunicacao_atual'], height=120)
-
-else:
-    with tab_diagnostico:
-        st.info("👋 Central Aegis Eleitoral Zerada e Pronta para Onboarding. Insira o perfil, o partido e a biografia profunda do candidato na barra lateral para abrir a central de controle comercial.")
-
-
+        # AJUSTE CHAVE: O laço agora lê e renderiza exatamente a lista dinâmica do usuário
+        for municipio in dados_usuario['municipios']:
+            st.markdown(f"#### ⚙️ Orçamento de Pessoal Terrestre — **{municipio}**")
+            col_f1, col_f2, col_f3 = st.columns(3)
+            with col_f1:
+                militantes = st.number_input(f"Militantes / Equipe de Rua (Qtd)", min_value=0, value=10, key=f"mil_q_{municipio}")
+                sal_militante = st.number_input(f"Custo por Militante (R$)", min_value=0, value=1500, key=f"mil_s_{municipio}")
+            with col_f2:
+                coordenadores = st.number_input(f"Coordenadores Locais (Qtd)", min_value=0, value=1, key=f"coord_q_{municipio}")
+                sal_coordenador = st.number_input(f"Custo por Coordenador (R$)", min_value=0, value=3500, key=f"coord_s_{municipio}")
+            with col_f3:
+                fiscais = st.n                     
