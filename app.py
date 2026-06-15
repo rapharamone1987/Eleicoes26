@@ -218,7 +218,7 @@ with st.sidebar.form("contexto_campanha"):
 # ------------------------------------------------------------------------------
 # 5. MEMÓRIA DE SESSÃO E PROCESSAMENTO DA IA
 # ------------------------------------------------------------------------------
-if activar_motor:
+if ativar_motor:
     if not nome_input or not partido_input or not nicho_input or not biografia_input or not municipios_alvo:
         st.sidebar.error("⚠️ Operação Interrompida: Preencha TODOS os campos da barra lateral para forjar a identidade estratégica.")
     else:
