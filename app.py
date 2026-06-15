@@ -306,4 +306,176 @@ tab_diagnostico, tab_bigdata, tab_conversao, tab_criativo = st.tabs([
 ])
 
 if 'motor_ia' in st.session_state:
-    dados_usuario = st.session_state['da
+    dados_usuario = st.session_state['dados_candidato']
+    
+    # --- ABA 1: PLANO DE RUPTURA ---
+    with tab_diagnostico:
+        st.subheader(f"Plano Tático de Ataque — {dados_usuario['nome']}")
+        if 'analise_inicial' in st.session_state:
+            st.markdown(st.session_state['analise_inicial'])
+            st.text_area("Copiar Relatório SWOT:", value=st.session_state['analise_inicial'], height=100)
+            
+            # ATIVAÇÃO DO DIÁLOGO DA SWOT
+            renderizar_bunker_discussao("swot", st.session_state['analise_inicial'])
+
+    # --- ABA 2: BIG DATA GEOPOLÍTICO REATIVO ---
+    with tab_bigdata:
+        st.header("📊 Inteligência de Dados Demográficos e Eleitorais")
+        st.markdown("Auditoria de população, abstenção e comportamento político reativa ao alvo selecionado.")
+        
+        opcao_visualizacao = st.selectbox(
+            "Selecione o município ativo para auditoria de Big Data:",
+            options=["Consolidado Estadual (Geral)"] + dados_usuario['municipios']
+        )
+        
+        if opcao_visualizacao in DADOS_GEOPOLITICOS_RS:
+            bd = DADOS_GEOPOLITICOS_RS[opcao_visualizacao]
+            modo_ia_puro = False
+        elif opcao_visualizacao == "Consolidado Estadual (Geral)":
+            bd = DADOS_ESTADUAIS_GERAIS
+            modo_ia_puro = False
+        else:
+            modo_ia_puro = True
+            
+        if not modo_ia_puro:
+            col_bd1, col_bd2, col_bd3 = st.columns(3)
+            col_bd1.metric("Eleitorado Alvo Fixo", f"{bd['eleitorado_total']:,} Votos")
+            col_bd2.metric("Abstenção Média Histórica", bd['abstencao_media'])
+            col_bd3.metric("Recorte Geográfico", bd['regiao'])
+            
+            col_info1, col_info2 = st.columns(2)
+            with col_info1:
+                st.info(f"**Matriz Socioeconômica Regional:**\n\n{bd['perfil_socioeconomico']}")
+            with col_info2:
+                st.warning(f"**Comportamento de Urna e Histórico:**\n\n{bd['comportamento_historico']}")
+            contexto_bd_ativo = str(bd)
+        else:
+            st.warning(f"🌐 Varredura Ativa: O município '{opcao_visualizacao}' exige estatísticas dinâmicas via IA.")
+            st.markdown("*O motor vai extrair do seu ecossistema as estimativas de população, eleitorado e abstenção para esta cidade específica.*")
+            contexto_bd_ativo = f"Município dinâmico fora da âncora: {opcao_visualizacao}"
+
+        st.markdown("---")
+        
+        if st.button(f"🧠 Forjar Cenários de Discurso e Estatísticas para {opcao_visualizacao}"):
+            with st.spinner(f"Processando registros demográficos de {opcao_visualizacao}..."):
+                if not modo_ia_puro:
+                    contexto_prompt = f"Perfil Socioeconômico: {bd['perfil_socioeconomico']}. Histórico de Urna: {bd['comportamento_historico']}."
+                else:
+                    contexto_prompt = f"Gere dados detalhados de população estimada, eleitorado aproximado, abstenção média histórica e a matriz econômica real da cidade de {opcao_visualizacao}, Rio Grande do Sul."
+                
+                prompt_bd = f"""
+                Analise os dados geopolíticos estruturais e demográficos para a praça [{opcao_visualizacao}]:
+                Contexto Regional: {contexto_prompt}
+                
+                Considerando minha biografia ("{dados_usuario['biografia']}") e meu nicho ("{dados_usuario['nicho']}"), monte um dossiê de nível PhD:
+                1. DETALHAMENTO DE POPULAÇÃO E ELEITORADO: Forneça as estimativas estatísticas detalhadas para {opcao_visualizacao}.
+                2. TRÊS CENÁRIOS DE TOM DE DISCURSO DE GUERRA. Diga exatamente o gancho de abertura e a frase de impacto para cada tom.
+                """
+                try:
+                    relatorio_bd = st.session_state['motor_ia'].generate_content(prompt_bd)
+                    st.session_state[f'discurso_{opcao_visualizacao}'] = relatorio_bd.text
+                except Exception as e:
+                    st.error(f"Erro no motor de Big Data: {e}")
+                    
+        if f'discurso_{opcao_visualizacao}' in st.session_state:
+            st.subheader(f"🔥 Diretrizes de Discurso e Estatísticas Adaptativas — {opcao_visualizacao}")
+            st.markdown(st.session_state[f'discurso_{opcao_visualizacao}'])
+            st.text_area("Copiar Dossiê Regional:", value=st.session_state[f'discurso_{opcao_visualizacao}'], height=100)
+            contexto_bd_ativo += "\n" + st.session_state[f'discurso_{opcao_visualizacao}']
+            
+        # ATIVAÇÃO DO DIÁLOGO DO BIG DATA
+        renderizar_bunker_discussao("bigdata", contexto_bd_ativo)
+
+    # --- ABA 3: CONVERSÃO TERRITORIAL DE CAMPO ---
+    with tab_conversao:
+        st.header("🗺️ Plano de Infiltração Territorial")
+        cidade_foco = st.selectbox("Selecione a praça para auditoria tática de cabos eleitorais:", options=dados_usuario['municipios'])
+        
+        st.subheader("🧮 Calculadora de Estrutura Terrestre (CRM)")
+        col_crm1, col_crm2, col_crm3 = st.columns(3)
+        with col_crm1:
+            num_liderancas = st.number_input("Número de Generais de Base (Líderes) na Cidade", min_value=0, max_value=100, value=5, key=f"lid_{cidade_foco}")
+        with col_crm2:
+            media_votos_lider = st.number_input("Cobrança de Meta por General (Votos)", min_value=10, max_value=5000, value=1000, key=f"meta_{cidade_foco}")
+        with col_crm3:
+            votos_opiniao_insta = st.slider("Arrasto Projetado por Tráfego Pago (Aéreo)", min_value=0, max_value=20000, value=2000, key=f"traf_{cidade_foco}")
+            
+        votos_estrutura_total = num_liderancas * media_votos_lider
+        votos_projetados_totais = votos_estrutura_total + votos_opiniao_insta
+        st.metric("Projeção Real de Urna (Alvo Local)", f"{votos_projetados_totais:,} Votos")
+        
+        if st.button(f"🔥 Forjar Plano de Ocupação para {cidade_foco}"):
+            with st.spinner("Forjando ordens de batalha para as lideranças..."):
+                prompt_analise = f"""
+                Gere um Relatório de Ocupação Territorial Estratégica para a cidade de {cidade_foco}.
+                Meta Terrestre: {votos_estrutura_total} baseada em {num_liderancas} líderes de base.
+                Meta Digital: {votos_opiniao_insta} votos de opinião.
+                
+                Com base na BIOGRAFIA do candidato, entregue uma resposta arrojada de guerrilha:
+                1. COBRANÇA DE DESEMPENHO: Qual a estratégia institucional para amarrar e auditar esses {num_liderancas} líderes para que entreguem a meta sem trair o comitê?
+                2. OPERAÇÃO DE ASSALTO: Qual ação de forte impacto de rua deve ser feita em {cidade_foco} para neutralizar os deputados tradicionais dominantes.
+                """
+                try:
+                    relatorio_cidade = st.session_state['motor_ia'].generate_content(prompt_analise)
+                    st.session_state[f'relatorio_{cidade_foco}'] = relatorio_cidade.text
+                except Exception as e:
+                    st.error(f"Erro no motor territorial: {e}")
+                    
+        if f'relatorio_{cidade_foco}' in st.session_state:
+            st.markdown("---")
+            st.markdown(st.session_state[f'relatorio_{cidade_foco}'])
+            st.text_area("Copiar Relatório Territorial:", value=st.session_state[f'relatorio_{cidade_foco}'], height=100)
+            
+            # ATIVAÇÃO DO DIÁLOGO TERRITORIAL
+            renderizar_bunker_discussao("territorial", st.session_state[f'relatorio_{cidade_foco}'])
+
+    # --- ABA 4: FÁBRICA DE POSTS DIALÓGICA ---
+    with tab_criativo:
+        st.header("📝 Fábrica de Ataque Digital")
+        st.markdown("Peças de comunicação tática de alto impacto territorial com blindagem anti-sanção do TSE.")
+        
+        st.markdown(
+            f"""
+            <div style="background-color: #f1f5f9; padding: 12px; border-radius: 4px; margin-bottom: 15px; border-left: 4px solid #b91c1c;">
+                <strong>Briefing de Combate Ativo:</strong> {dados_usuario['nome']} | Linha Ideológica: {dados_usuario['nicho']}
+            </div>
+            """, unsafe_allow_html=True
+        )
+        
+        col_c1, col_c2 = st.columns(2)
+        with col_c1:
+            canal = st.selectbox("Formato da Arma Digital", ["Roteiro de Vídeo Curto (Reels Agressivo)", "Carrossel de Confronto", "Nota de Ataque Institucional"])
+        with col_c2:
+            cidade_recorte = st.selectbox("Afunilar Alvo Narrativo para qual Cidade?", ["Foco Estadual Geral"] + dados_usuario['municipios'])
+            
+        pauta_dia = st.text_area("O Fato Político ou Notícia do Dia para Posicionamento:", placeholder="Ex: Escândalo de infraestrutura abandonada, colapso na saúde regional...")
+        
+        if st.button("🚀 Disparar Linha de Produção Digital"):
+            if not pauta_dia:
+                st.error("⚠️ Insira uma pauta real para orientar a redação.")
+            else:
+                with st.spinner("Redigindo peça institucional sob as travas do TSE..."):
+                    prompt_criativo = f"""
+                    Gere uma peça no formato [{canal}] focado em [{cidade_recorte}].
+                    Notícia/Fato do dia a explorar: "{pauta_dia}".
+                    
+                    ESTRUTURA OBRIGATÓRIA: Hook de 3 segundos, Argumento de Guerra e Chamada Institucional sem pedir votos.
+                    """
+                    try:
+                        peca_final = st.session_state['motor_ia'].generate_content(prompt_criativo)
+                        st.session_state['peca_comunicacao_atual'] = peca_final.text
+                    except Exception as e:
+                        st.error(f"Erro na fábrica de criativos: {e}")
+                        
+        if 'peca_comunicacao_atual' in st.session_state:
+            st.markdown("---")
+            st.subheader("🔥 Peça Pronta para Distribuição")
+            st.markdown(st.session_state['peca_comunicacao_atual'])
+            st.text_area("Copiar Peça para Redes/WhatsApp:", value=st.session_state['peca_comunicacao_atual'], height=100)
+            
+            # ATIVAÇÃO DO DIÁLOGO DA FÁBRICA DE POSTS
+            renderizar_bunker_discussao("criativo", st.session_state['peca_comunicacao_atual'])
+
+else:
+    with tab_diagnostico:
+        st.info("👋 Central Aegis Eleitoral Zerada e Pronta para Onboarding. Insira o perfil, o partido e a biografia profunda do candidato na barra lateral para abrir a sala de situação.")
