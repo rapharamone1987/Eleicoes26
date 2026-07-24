@@ -6,10 +6,10 @@ from groq import Groq
 # ------------------------------------------------------------------------------
 # 1. CONFIGURAÇÃO DA INTERFACE E AMBIENTE (TELA NEUTRA COMERCIAL)
 # ------------------------------------------------------------------------------
-st.set_page_config(page_title="Aegis Eleitoral PRO", layout="wide")
+st.set_page_config(page_title="Consultor de Marketing Político PRO", layout="wide")
 
-st.title("🛡️ Aegis Eleitoral — Inteligência de Guerrilha")
-st.caption("Plataforma Avançada de Sala de Situação, Modelagem Neurolinguística (PNL) e Big Data — Eleições 2026")
+st.title("🛡️ Consultor de Marketing Político — Inteligência de Guerrilha")
+st.caption("Plataforma Avançada de Sala de Situação, Compliance Ideológico, PNL e Big Data — Eleições 2026")
 
 # --- VALIDAÇÃO DA CHAVE DE API NOS SECRETS ---
 try:
@@ -132,7 +132,7 @@ MUNICICIPIOS_497_RS = [
 MUNICICIPIOS_497_RS = sorted(list(set(MUNICICIPIOS_497_RS)))
 
 # ------------------------------------------------------------------------------
-# 3. MOTOR DE INTELIGÊNCIA ARTIFICIAL MILITARIZADO (PHD CORE)
+# 3. MOTOR DE INTELIGÊNCIA ARTIFICIAL E CONSULTORIA DE MARKETING POLÍTICO
 # ------------------------------------------------------------------------------
 def ativar_motor_campanha(api_key, dados_candidato):
     client = Groq(api_key=api_key)
@@ -143,20 +143,22 @@ def ativar_motor_campanha(api_key, dados_candidato):
     nicho_livre = dados_candidato.get('nicho', 'Geral')
     biografia = dados_candidato.get('biografia', 'Sem histórico detalhado.')
 
+    # NOVO PROMPT MILITARIZADO COM FILTRO DE COMPLIANCE POLÍTICO-IDEOLÓGICO
     prompt_sistema = f"""
-    Você é o Estrategista-Chefe, General de Sala de Crise e PhD em Ciência Política e Sociologia da campanha de {nome} ({partido}), disputando a eleição de Deputado Federal pelo Rio Grande do Sul.
-    Idade: {idade} anos.
+    Você é o Consultor de Marketing Político Estrategista-Chefe e PhD em Ciência Política, Sociologia e PNL da campanha de {nome}, filiado ao partido/federação [{partido}].
+    Idade do candidato: {idade} anos.
     
-    [PRONTUÁRIO BIOGRÁFICO REAL DO CANDIDATO]
+    [PRONTUÁRIO BIOGRÁFICO DO CANDIDATO]
     {biografia}
     
-    [TRINCHEIRA TEMÁTICA CENTRAL]
+    [TRINCHEIRA NARRATIVA CENTRAL]
     {nicho_livre}
     
-    [DIRETRIZES DE GUERRA DO COMITÊ CENTRAL - IMPRESCINDÍVEL]
-    1. TOM E POSTURA: Responda com absoluto pragmatismo, agressividade mercadológica e rigor sociológico. Ignore conselhos pacifistas ou cartilhas corporativas confortáveis.
-    2. ENGENHARIA DE DISCURSO E PNL: Quando solicitado a gerar conteúdos ou analisar personas, aplique com precisão cirúrgica os metamodelos de linguagem da Programação Neurolinguística (Visual, Auditivo, Cinestésico) e use gatilhos mentais avançados de assalto psicológico (Autoridade, Escassez, Conectividade Regional).
-    3. COMPLIANCE JURÍDICO TSE: Comande narrativas avassaladoras e mobilizadoras, mas NUNCA use termos de pedido explícito de voto (como "vote em mim", "conto com seu voto", "me eleja") para blindar a chapa contra processos legais de propaganda antecipada. Use termos institucionais de alta voltagem ("Defendo intransigentemente que", "Temos o dever de confrontar").
+    [TRAVA OBRIGATÓRIA DE COMPLIANCE IDEOLÓGICO E NARRATIVO - NÍVEL CRÍTICO]
+    1. ALINHAMENTO DO PARTIDO ({partido}): Você está TERMINANTEMENTE PROIBIDO de dar sugestões de discurso, argumentos ou propostas que entrem em conflito com a linha doutrinária, idológica ou programa partidário oficial do partido {partido}. Se o partido for de viés liberal/conservador, use pautas de liberdade, responsabilidade fiscal, ordem pública e apoio ao produtor; se for de viés progressista/trabalhista, alinhe aos direitos sociais, fortalecimento do serviço público e desenvolvimento sustentável. Mantenha 100% de coerência ideológica.
+    2. ENGENHARIA DE LINGUAGEM E PNL: Aplique rigorosamente metamodelos de linguagem (Visual, Auditivo, Cinestésico) e gatilhos mentais de assalto psicológico (Autoridade, Escassez, Prova Social, Conexão Regional).
+    3. RIGOR TÁTICO E PRAGMATISMO: Esqueça conselhos genéricos. Entregue soluções arrojadas de guerrilha eleitoral terrestre e digital.
+    4. COMPLIANCE TSE: Use discursos de altíssima voltagem e mobilização, mas NUNCA use expressões de pedido explícito de voto ("vote em mim", "conto com seu voto") para blindar o candidato contra processos de propaganda antecipada.
     """
 
     class EngineGuerrilha:
@@ -167,7 +169,7 @@ def ativar_motor_campanha(api_key, dados_candidato):
                     {"role": "system", "content": prompt_sistema},
                     {"role": "user", "content": prompt_usuario}
                 ],
-                temperature=0.1,  # Máxima precisão lógica e sem alucinações
+                temperature=0.1,  # Foco absoluto na coerência lógica e ideológica
                 max_tokens=2500
             )
             class Wrapper:
@@ -179,21 +181,20 @@ def ativar_motor_campanha(api_key, dados_candidato):
 # ------------------------------------------------------------------------------
 # 4. PAINEL DE CONTROLE LATERAL (TELA COMERCIAL TOTALMENTE NEUTRA)
 # ------------------------------------------------------------------------------
-st.sidebar.title("👤 Inteligência de Origem")
-st.sidebar.markdown("*Insira o DNA político do candidato para alimentar o ecossistema.*")
+st.sidebar.title("👤 Consultor de Marketing Político")
+st.sidebar.markdown("*Insira a identidade e a legenda do candidato para ativar o motor de inteligência.*")
 
 with st.sidebar.form("contexto_campanha"):
     nome_input = st.text_input("Nome de Urna", placeholder="Ex: Capitão Veríssimo")
     idade_input = st.number_input("Idade", min_value=18, max_value=90, value=35)
-    partido_input = st.text_input("Partido / Federação", placeholder="Ex: NOVO / PP / MDB")
-    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Defesa do Livre Mercado / Segurança Pública")
+    partido_input = st.text_input("Partido / Federação", placeholder="Ex: PL / NOVO / PP / MDB / PT / PSDB")
+    nicho_input = st.text_input("Trincheira / Pauta Central", placeholder="Ex: Defesa do Livre Mercado / Segurança Pública / Infraestrutura Rural")
     
     biografia_input = st.text_area(
         "Biografia e Capital Político do Candidato", 
-        placeholder="Ex: Detalhe o recall político, profissão real, histórico com as bases de veteranos ou produtores rurais..."
+        placeholder="Ex: Detalhe o recall político, profissão real, histórico com as bases ou se é estreante em disputas..."
     )
     
-    # EXIGÊNCIA RESOLVIDA: O botão apenas valida os dados de cadastro biográfico geral
     ativar_motor = st.form_submit_button("🔥 Inicializar Motor Cognitivo")
 
 # ------------------------------------------------------------------------------
@@ -201,7 +202,7 @@ with st.sidebar.form("contexto_campanha"):
 # ------------------------------------------------------------------------------
 if ativar_motor:
     if not nome_input or not partido_input or not nicho_input or not biografia_input:
-        st.sidebar.error("⚠️ Erro Estratégico: Preencha todos os campos biográficos para calibrar o motor de PNL.")
+        st.sidebar.error("⚠️ Erro de Cadastro: Preencha todos os campos biográficos e o partido para calibrar o alinhamento ideológico.")
     else:
         dados_candidato = {
             "nome": nome_input, 
@@ -211,19 +212,19 @@ if ativar_motor:
             "biografia": biografia_input
         }
         st.session_state['dados_candidato'] = dados_candidato
-        st.session_state['motor_ia'] = colocar_motor_no_ar = baixar_motor = ativar_motor_campanha(api_key, dados_candidato)
+        st.session_state['motor_ia'] = ativar_motor_campanha(api_key, dados_candidato)
         
         for modulo in ["swot", "bigdata", "personas", "criativo"]:
             st.session_state[f"chat_{modulo}"] = []
-        st.toast("Motor Cognitivo Ativo com Sucesso!", icon="✅")
+        st.toast("Motor do Consultor Político Ativo com Sucesso!", icon="✅")
 
 # ------------------------------------------------------------------------------
-# 6. CÉLULA DE INTERAÇÃO DIALÓGICA (DEBATE COM O PHD)
+# 6. CÉLULA DE INTERAÇÃO DIALÓGICA (DEBATE COM O CONSULTOR SÊNIOR)
 # ------------------------------------------------------------------------------
 def renderizar_bunker_discussao(modulo_key, contexto_analise):
     st.markdown("---")
-    st.subheader("💬 Bunker de Discussão Tática com o PhD")
-    st.caption("Conteste as análises acima, simule ataques de adversários ou peça roteiros de reação imediata.")
+    st.subheader("💬 Bunker de Discussão Tática com o Consultor")
+    st.caption("Conteste as análises acima, simule ataques de adversários ou peça ajustes ideológicos imediatos.")
     
     if f"chat_{modulo_key}" not in st.session_state:
         st.session_state[f"chat_{modulo_key}"] = []
@@ -232,12 +233,12 @@ def renderizar_bunker_discussao(modulo_key, contexto_analise):
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
             
-    if prompt_chat := st.chat_input("Digite sua ordem ou contra-argumento estratégico:", key=f"input_{modulo_key}"):
+    if prompt_chat := st.chat_input("Digite sua ordem ou contra-argumento tático:", key=f"input_{modulo_key}"):
         with st.chat_message("user"):
             st.markdown(prompt_chat)
         st.session_state[f"chat_{modulo_key}"].append({"role": "user", "content": prompt_chat})
         
-        with st.spinner("O PhD está redesenhando as linhas de combate..."):
+        with st.spinner("O Consultor de Marketing Político está redesenhando as linhas de combate..."):
             prompt_consolidado = f"""
             [CONTEXTO DO RELATÓRIO DO MÓDULO]
             {contexto_analise}
@@ -248,7 +249,7 @@ def renderizar_bunker_discussao(modulo_key, contexto_analise):
             [NOVA DIRETRIZ OU QUESTIONAMENTO DO COMITÊ CENTRAL]
             {prompt_chat}
             
-            Entregue uma resposta ultra-arrojada, cirúrgica e de aplicação imediata na rua. Mantenha os guardrails do TSE.
+            Entregue uma resposta ultra-arrojada, cirúrgica e respeitando estritamente o alinhamento político do partido [{dados_usuario['partido']}]. Mantenha os guardrails do TSE.
             """
             try:
                 resposta_chat = st.session_state['motor_ia'].generate_content(prompt_consolidado)
@@ -277,12 +278,11 @@ if 'motor_ia' in st.session_state:
         st.header("🧠 Análise SWOT de Assalto Territorial")
         st.markdown("Mapeamento crú de vulnerabilidades das dinastias políticas locais contra seu capital político.")
         
-        # EXIGÊNCIA RESOLVIDA: Seleção independente e intuitiva com busca nativa por teclado no tablet
         cidade_swot = st.selectbox("Selecione a praça de guerra para auditoria SWOT:", options=MUNICICIPIOS_497_RS, key="swot_cidade_indep")
         
         if st.button(f"🔥 Forjar Plano de Ruptura para {cidade_swot}"):
-            with st.spinner("Desmontando defesas adversárias..."):
-                prompt_swot = f"Gere um Diagnóstico de Ruptura Eleitoral para a cidade de {cidade_swot}. Faça uma análise SWOT agressiva e profunda que confronte diretamente minha biografia contra as vulnerabilidades políticas locais."
+            with st.spinner("Desmontando defesas adversárias sob compliance partidário..."):
+                prompt_swot = f"Gere um Diagnóstico de Ruptura Eleitoral para a cidade de {cidade_swot}. Faça uma análise SWOT agressiva alinhada aos valores do partido {dados_usuario['partido']}."
                 try:
                     res_swot = st.session_state['motor_ia'].generate_content(prompt_swot)
                     st.session_state[f'swot_rel_{cidade_swot}'] = res_swot.text
@@ -299,13 +299,12 @@ if 'motor_ia' in st.session_state:
     with tab_bigdata:
         st.header("📊 Inteligência Estatística de Dados Demográficos")
         
-        # EXIGÊNCIA RESOLVIDA: Seleção independente e intuitiva com busca nativa
         cidade_bd = st.selectbox("Selecione o município alvo para extração de Big Data:", options=["Consolidado Estadual (Geral)"] + MUNICICIPIOS_497_RS, key="bd_cidade_indep")
         
         if cidade_bd in DADOS_GEOPOLITICOS_RS:
             bd = DADOS_GEOPOLITICOS_RS[cidade_bd]
             modo_ia = False
-        elif id_est := cidade_bd == "Consolidado Estadual (Geral)":
+        elif cidade_bd == "Consolidado Estadual (Geral)":
             bd = DADOS_ESTADUAIS_GERAIS
             modo_ia = False
         else:
@@ -327,7 +326,7 @@ if 'motor_ia' in st.session_state:
             
         if st.button(f"🧠 Puxar Dossiê de Inteligência e Discurso para {cidade_bd}"):
             with st.spinner(f"Varrendo registros de população e comportamento de {cidade_bd}..."):
-                prompt_bd = f"Gere dados detalhados de população estimada, eleitorado aproximado, abstenção média histórica e a matriz econômica real da cidade de {cidade_bd}, Rio Grande do Sul. Monte 3 cenários arrojados de tom de voz para submeter esse eleitorado."
+                prompt_bd = f"Gere dados detalhados de população estimada, eleitorado aproximado, abstenção média histórica e a matriz econômica real da cidade de {cidade_bd}, Rio Grande do Sul. Monte 3 cenários arrojados de tom de voz ideologicamente coerentes com o partido {dados_usuario['partido']}."
                 try:
                     res_bd = st.session_state['motor_ia'].generate_content(prompt_bd)
                     st.session_state[f'bd_rel_{cidade_bd}'] = res_bd.text
@@ -342,26 +341,25 @@ if 'motor_ia' in st.session_state:
             
         renderizar_bunker_discussao("bigdata", contexto_bd)
 
-    # --- ABA 3: MODELAGEM DE ELETROPERSONAS (NOVA REQUISIÇÃO JÁ INTEGRADA) ---
+    # --- ABA 3: MODELAGEM DE ELETROPERSONAS (PNL + SOCIOLOGIA) ---
     with tab_personas:
         st.header("👥 Modelagem Psicológica e Mapeamento de Eletropersonas")
         st.markdown("Projete os arquétipos e perfis neuro-sociológicos dominantes do território para calibrar seus gatilhos de PNL.")
         
-        # EXIGÊNCIA RESOLVIDA: Seleção territorial totalmente independente e intuitiva
         cidade_personas = st.selectbox("Selecione o município para mapear as personas alvo:", options=MUNICICIPIOS_497_RS, key="personas_cidade_indep")
         
         if st.button(f"👥 Forjar Matriz de 3 Personas Alvo para {cidade_personas}"):
             with st.spinner(f"Mapeando o subconsciente do eleitorado de {cidade_personas}..."):
                 prompt_personas = f"""
                 Estude o perfil sociopolítico da cidade de {cidade_personas}.
-                Com base na minha biografia ("{dados_usuario['biografia']}"), monte um dossiê sociológico estruturado gerando exatamente **3 Eletropersonas Principais e Dominantes** da cidade.
+                Com base na biografia do candidato ("{dados_usuario['biografia']}") e no alinhamento do partido [{dados_usuario['partido']}], monte um dossiê sociológico gerando exatamente **3 Eletropersonas Principais e Dominantes** da cidade.
                 
                 Para CADA UMA das 3 personas, entregue obrigatoriamente em tópicos rígidos:
                 1. PERFIL DO ALVO: Nome do arquétipo, idade média, faixa de renda e ocupação típica na cidade.
-                2. SISTEMA VACILANTE (PNL): Identifique se a persona é predominantemente VISUAL (responde a imagens/estética), AUDITIVA (responde a dados, tom e falas estruturadas) ou CINESTÉSICA (responde a sentimento, aperto de mão, senso de proteção).
+                2. SISTEMA VACILANTE (PNL): Identifique se é predominantemente VISUAL, AUDITIVO ou CINESTÉSICO.
                 3. GATILHO MENTAL DE ASSALTO: Qual gatilho psicológico perfura a defesa desse indivíduo (Autoridade, Escassez, Urgência Regional, Prova Social).
-                4. A OBJEÇÃO SECRETA: O medo ou preconceito inconsciente que faz essa persona rejeitar um candidato com o meu perfil.
-                5. ANTÍDOTO DE PNL (A FRASSE DE IMPACTO): Escreva, entre aspas, a frase exata de posicionamento institucional que eu devo verbalizar na feira, no rádio ou no Reels que destrói a objeção dessa persona e desarma sua resistência de forma imediata (respeitando o compliance de nunca pedir voto).
+                4. A OBJEÇÃO SECRETA: O medo inconsciente que faz essa persona rejeitar o candidato.
+                5. ANTÍDOTO DE PNL (A FRASE DE IMPACTO IDEOLÓGICA): Escreva a frase exata de posicionamento que destrói a objeção dessa persona e desarma sua resistência, respeitando a linha doutrinária do partido {dados_usuario['partido']} e sem pedir voto.
                 """
                 try:
                     res_personas = st.session_state['motor_ia'].generate_content(prompt_personas)
@@ -380,32 +378,29 @@ if 'motor_ia' in st.session_state:
         st.header("📝 Fábrica de Comunicação e Conteúdo de Guerrilha")
         st.markdown("Gere linhas editoriais imunes a processos judiciais do TSE, contextualizadas ao território.")
         
-        # EXIGÊNCIA RESOLVIDA: Seleção independente e intuitiva
         cidade_criativo = st.selectbox("Afunilar alvo narrativo para qual cidade?", options=["Foco Geral do Estado"] + MUNICICIPIOS_497_RS, key="criativo_cidade_indep")
-        
         canal = st.selectbox("Formato da Arma Digital", ["Roteiro de Vídeo Curto (Reels Agressivo)", "Carrossel de Confronto Sociológico", "Nota de Ataque Institucional"])
         
-        # EXIGÊNCIA RESOLVIDA: O campo de notícia do dia tornou-se opcional para permitir geração livre perpétua
         pauta_dia = st.text_area(
             "O Fato Político ou Dor do Dia (OPCIONAL):", 
-            placeholder="Deixe em branco para gerar uma Linha Editorial Perpétua de Posicionamento baseada puramente na dor histórica da cidade e na sua biografia..."
+            placeholder="Deixe em branco para gerar uma Linha Editorial Perpétua de Posicionamento..."
         )
         
         if st.button("🚀 Disparar Linha de Produção Digital"):
-            with st.spinner("Redigindo peça de alta voltagem sob as travas do TSE..."):
+            with st.spinner("Redigindo peça de alta voltagem sob as travas do TSE e alinhamento partidário..."):
                 if pauta_dia:
-                    diretriz_conteudo = f"Fato político ou notícia do dia para exploração imediata: '{pauta_dia}'."
+                    diretriz_conteudo = f"Fato político do dia para exploração imediata: '{pauta_dia}'."
                 else:
-                    diretriz_conteudo = "Nenhum fato específico fornecido. Puxe a linha histórica de dores econômicas da cidade e monte uma Linha Editorial Perpétua de Posicionamento focado em quebrar o status quo."
+                    diretriz_conteudo = "Nenhum fato específico fornecido. Puxe a linha histórica de dores econômicas da cidade e monte uma Linha Editorial Perpétua de Posicionamento."
                     
                 prompt_criativo = f"""
-                Gere uma peça de comunicação política crua e mobilizadora no formato [{canal}] focado na praça [{cidade_criativo}].
+                Gere uma peça de comunicação política no formato [{canal}] focado na praça [{cidade_criativo}], respeitando rigorosamente a linha ideológica do partido [{dados_usuario['partido']}].
                 Contexto de pauta: {diretriz_conteudo}
                 
                 ESTRUTURA DA RESPOSTA:
-                1. HOOK / O GANCHO DE PNL (Primeiros 3 segundos focados no canal sensorial dominante para travar o dedo no feed).
-                2. ARGUMENTO DE GUERRA (Exponha a dor ou a linha editorial histórica, injete a biografia do candidato como ponto de autoridade institucional).
-                3. CHAMADA INSTITUCIONAL (Engajamento e convocação de debate, sem qualquer pedido explícito de voto).
+                1. HOOK / O GANCHO DE PNL (Primeiros 3 segundos para travar o dedo no feed).
+                2. ARGUMENTO DE GUERRA (Exponha a dor, injete a biografia do candidato e os valores do partido {dados_usuario['partido']}).
+                3. CHAMADA INSTITUCIONAL (Engajamento e convocação de debate, sem pedido explícito de voto).
                 """
                 try:
                     peca_final = st.session_state['motor_ia'].generate_content(prompt_criativo)
@@ -422,4 +417,4 @@ if 'motor_ia' in st.session_state:
 
 else:
     with tab_diagnostico:
-        st.info("👋 Central Aegis Eleitoral Zerada e Pronta para Onboarding. Insira os dados do perfil e a biografia profunda do candidato na barra lateral para abrir a sala de situação.")
+        st.info("👋 Central do Consultor de Marketing Político Zerada. Insira os dados do perfil, partido e biografia na barra lateral para abrir a sala de situação.")
